@@ -1,0 +1,57 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body {
+  background-color: #f0f0f0;
+}
+* {
+  scroll-behavior: smooth;
+}
+.navbar {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.8743872549019608) 100%
+  );
+}
+.noscrollbar::-webkit-scrollbar {
+  display: none;
+}
+.active {
+  background-color: #ba470d;
+  color: white;
+}
+
+/* Add this to your global styles or stylesheets */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+.z-60 {
+  z-index: 60;
+}
+.text-defaultThemeColor {
+  color: #ba470d !important;
+}
+.bg-defaultThemeColor {
+  background-color: #ba470d !important;
+}
+.min-h-400 {
+  min-height: 400px;
+}
+.pointer-none {
+  pointer-events: none !important;
+}
+
+.section {
+  scroll-margin-top: 175px;
+}
