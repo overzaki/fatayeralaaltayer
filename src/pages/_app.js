@@ -1,13 +1,41 @@
 // redux
 import { Provider } from "react-redux";
 import Store from "../../RTK/store/store";
+import { useEffect } from "react";
+import io from 'socket.io-client';
+
 import '../app/globals.css';
 import '../components/CustomRadio/CustomRadio.css'
 import '../components/ToggleSwitch/ToggleSwitch.css'
 import Head from "next/head";
 import Footer from '../components/Footer'
 
+
+
+// Example CORS setup for Express server
+
+
+// const domain = "http://localhost:3001";
+
+const domain = "https://www.overzaki.io";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTcxOTM0NjVhOWRkNGM1NmU0NDdhNjciLCJkZXZpY2VOYW1lIjoidW5pcXVlIGRldmljZSBuYW1lIiwiaWF0IjoxNzA1MDUzODAwLCJleHAiOjE3MDU5MTc4MDB9.shq2exbIUMymWZTwGbzFra7labzX28CPicHZ4Temjpo";
+const socket = io(domain + '/design?token=' + token);
 function MyApp({ Component, pageProps }) {
+
+    useEffect(() => {
+        socket.on('connect', () => {
+            console.log("Connected to server");
+        });
+        socket.on('disconnect', () => {
+            console.log("Disconnected from server");
+        }); ``
+        socket.on('error', (error) => {
+            console.log("Error from server", error);
+        });
+        socket.on('65a16dbec44dcc5b7e514a58:cmd', (data) => {
+            console.log("Received message:", data);
+        });
+    }, []);
     return (
         <>
             <Head>
