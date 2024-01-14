@@ -25,7 +25,7 @@ const PaymentBox = () => {
             <Image alt="logo" src="/logo.jpg" width={70} height={70} />
             <div className="flex  items-center w-full justify-between">
               <div className="flex flex-col gap-3">
-                <h1 className=" text-[2.5vw] md:text-[1.8vw] font-semibold ">
+                <h1 className=" text-[2.5vw] md:text-[1.8vw] font-semibold text-primary">
                   Fatayer Ala Al Tayer
                 </h1>
                 <div className="flex items-center gap-3">

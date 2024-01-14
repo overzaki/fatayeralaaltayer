@@ -7,7 +7,6 @@ import Link from "next/link";
 
 const CartButton = () => {
   const cartItems = useSelector((state: any) => state.cartList);
-  console.log(cartItems);
   return (
     <Popover className="relative">
       <Popover.Button as="div">
