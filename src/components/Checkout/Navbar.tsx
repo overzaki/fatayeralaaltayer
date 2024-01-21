@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between w-full mx-auto max-w-[1330px]">
         <Link
           href="/"
-          className="flex hover:text-[#ba470d] cursor-pointer gap-3 items-center "
+          className="flex hover:text-primary cursor-pointer gap-3 items-center "
         >
           <div className="relative w-[50px] object-cover h-[50px] ">
             <Image

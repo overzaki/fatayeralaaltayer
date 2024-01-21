@@ -283,7 +283,7 @@ const StoreInfoSlide = ({ open, setOpen, paymentMethods }: any) => {
                       <div className="flex w-full">
                         <div className="grid grid-cols-2 gap-2 w-full">
                           <div className="col-span">
-                            <button className="flex items-center justify-center gap-2 text-sm font-light w-full text-gray-900 rounded-md bg-gray-100 p-3 ring-1 ring-inset ring-gray-300 hover:bg-white">
+                            <button className="flex items-center justify-center gap-2 text-sm font-light w-full text-gray-900 rounded-custom bg-gray-100 p-3 ring-1 ring-inset ring-gray-300 hover:bg-white">
                               <Image
                                 alt="apple"
                                 src="/phone.png"
@@ -294,7 +294,7 @@ const StoreInfoSlide = ({ open, setOpen, paymentMethods }: any) => {
                             </button>
                           </div>
                           <div className="col-span">
-                            <button className="flex items-center justify-center gap-2 text-sm w-full font-light text-gray-900 rounded-md bg-gray-100 p-3 ring-1 ring-inset ring-gray-300 hover:bg-white">
+                            <button className="flex items-center justify-center gap-2 text-sm w-full font-light text-gray-900 rounded-custom bg-gray-100 p-3 ring-1 ring-inset ring-gray-300 hover:bg-white">
                               <Image
                                 alt="google"
                                 src="/location.png"

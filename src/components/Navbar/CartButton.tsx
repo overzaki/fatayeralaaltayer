@@ -55,7 +55,7 @@ const CartButton = () => {
                 <div className="flex gap-2 p-2 w-full">
                   <Link
                     href="/checkout"
-                    className="w-full flex items-center justify-center rounded-md uppercase text-white p-2 bg-[#ba470d] "
+                    className="w-full flex items-center justify-center rounded-custom uppercase text-white p-2 bg-primary "
                   >
                     View cart
                   </Link>

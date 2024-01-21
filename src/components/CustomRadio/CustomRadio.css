@@ -58,7 +58,7 @@ label {
 }
 
 .check:checked + label > .container > .cRadioBtn {
-  background: #ba470d;
+  background: var(--primaryColor);
   border-color: white;
 }
 

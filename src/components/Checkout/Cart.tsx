@@ -16,7 +16,7 @@ const Cart = () => {
     <div className="flex-[0.3]  max-md:mt-4 ">
       <div className="w-full flex items-center justify-between">
         <h1 className="text-xl font-semibold mb-1">Cart</h1>
-        <h3 className="flex items-center cursor-pointer hover:text-[#f9794e] text-[#ba470d] gap-1">
+        <h3 className="flex items-center cursor-pointer hover:text-[#f9794e] text-primary gap-1">
           <KeyboardBackspaceOutlinedIcon sx={{ fontSize: 18 }} />
           <Link href="/">
             <span className="font-semibold underline ">Continue Shopping</span>

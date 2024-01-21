@@ -57,7 +57,7 @@ const PickupModal = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
                         aria-orientation="horizontal"
                       >
                         <button
-                          className="w-full py-2.5 text-sm leading-5 rounded bg-white font-bold"
+                          className="w-full py-2.5 text-sm leading-5 rounded-custom bg-white font-bold"
                           id="headlessui-tabs-tab-13"
                           role="tab"
                           type="button"
@@ -142,7 +142,7 @@ const PickupModal = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
                   <div className="mt-5 sm:mt-6 px-4">
                     <button
                       type="button"
-                      className="inline-flex w-full justify-center rounded-md bg-[#BA470D] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#BA470D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      className="inline-flex w-full justify-center rounded-custom bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       onClick={() => setOpen(false)}
                     >
                       Confirm

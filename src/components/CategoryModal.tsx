@@ -72,7 +72,7 @@ const CategoryModal = ({
               >
                 <div className="font-semibold">{section.title}</div>
                 <div className="flex items-center">
-                  <div className="w-[30px] flex items-center justify-center h-[30px] text-white rounded-full bg-[#BA470D]">
+                  <div className="w-[30px] flex items-center justify-center h-[30px] text-white rounded-full bg-primary">
                     {section.products.length}
                   </div>
                   <ArrowForwardIosIcon />

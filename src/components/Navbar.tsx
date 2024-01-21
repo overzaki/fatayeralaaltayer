@@ -42,7 +42,7 @@ const Navbar = () => {
         <div className="fixed flex bottom-0 bg-white h-24 w-full items-center justify-center px-4 z-20">
           <Link
             href={"/checkout"}
-            className="rounded-md btn w-full max-w-[424px] text-white-800 text-lg flex justify-between items-center px-4 py-2.5 hover:bg-[#f98c56] bg-[#BA470D] "
+            className="rounded-md btn w-full max-w-[424px] text-white-800 text-lg flex justify-between items-center px-4 py-2.5 hover:opacity-50 bg-primary "
           >
             <div className="flex space-x-2 items-center rtl:space-x-reverse">
               <div className="bg-white text-black rounded-full flex items-center justify-center w-7 h-7 ">

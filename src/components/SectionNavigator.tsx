@@ -17,7 +17,7 @@ const SectionNavigator = () => {
           <Link
             href={"#" + item.toLocaleLowerCase().split(" ").join("-")}
             key={item}
-            className="p-3 navLink inline-block noscrollbar overflow-scroll px-4 duration-300 text-[#BA470D]   rounded-full "
+            className="p-3 navLink inline-block noscrollbar overflow-scroll px-4 duration-300 text-primary   rounded-full "
           >
             {item}
           </Link>
@@ -25,7 +25,7 @@ const SectionNavigator = () => {
       </div>
       <div className="border-l px-3 border-gray-300">
         <div className="cursor-pointer" onClick={handleOpen}>
-          <WindowOutlinedIcon sx={{ color: "#BA470D", fontSize: 28 }} />
+          <WindowOutlinedIcon className="text-primary" sx={{ fontSize: 28 }} />
         </div>
         <CategoryModal
           open={open}

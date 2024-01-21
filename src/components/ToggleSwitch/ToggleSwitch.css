@@ -40,7 +40,7 @@
 }
 
 .toggle:checked {
-  background-color: #ba470d;
+  background-color: var(--primaryColor);
 }
 
 .toggle:checked:before {

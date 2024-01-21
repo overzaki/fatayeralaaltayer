@@ -7,7 +7,7 @@ const PickupButton = () => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="w-full text-white p-3 font-semibold hover:bg-[#f98c56] bg-[#BA470D] "
+        className="w-full text-white p-3 font-semibold hover:opacity-70 bg-primary rounded-custom"
       >
         PICKUP
       </button>

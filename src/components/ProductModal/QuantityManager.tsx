@@ -10,7 +10,7 @@ const QuantityManager = ({ qty, setQty }: any) => {
         onClick={() => setQty(qty - 1)}
         className={`rounded-full border-2 ${qty === 1
           ? "text-[#666666] border-[#666666] pointer-none"
-          : "text-[#BA470D] border-[#BA470D] "
+          : "text-primary border-primary "
           }`}
       >
         <RemoveIcon />
@@ -18,7 +18,7 @@ const QuantityManager = ({ qty, setQty }: any) => {
       <span className="font-semibold">{qty}</span>
       <div
         onClick={() => setQty(qty + 1)}
-        className="rounded-full border-2 border-[#BA470D] text-[#BA470D]">
+        className="rounded-full border-2 border-primary text-primary">
         <AddIcon />
       </div>
     </div>

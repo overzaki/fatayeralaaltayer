@@ -12,7 +12,7 @@ const AddToCart = ({ quantity, price, name, id, desc, handleClose }: any) => {
   }
 
   return (
-    <button onClick={handleAddToCart} className="w-full rounded-lg flex items-center justify-between p-3 text-white font-semibold bg-[#BA470D]">
+    <button onClick={handleAddToCart} className="w-full rounded-custom flex items-center justify-between p-3 text-white font-semibold bg-primary">
       <span className="">{quantity * price} KWD</span>
       <span>ADD TO CART</span>
     </button>

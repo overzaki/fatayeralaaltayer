@@ -7,7 +7,7 @@ const DeliveryTime = () => {
     <div className="bg-white mb-5 rounded-lg w-full">
       <div className="text-end border-b p-5 border-gray-200 ">
         <span className="font-semibold text-base">Switch To:</span>
-        <span className="font-extralight ml-1 underline text-[#ba470d]">
+        <span className="font-extralight ml-1 underline text-primary">
           Pickup
         </span>
       </div>
@@ -18,9 +18,8 @@ const DeliveryTime = () => {
             <div className="flex items-center gap-2" key={item}>
               <CustomRadio item={item} />
               <span
-                className={`${
-                  item === "Choose Delivery Time" ? "text-gray-300" : ""
-                }`}
+                className={`${item === "Choose Delivery Time" ? "text-gray-300" : ""
+                  }`}
               >
                 {item}
               </span>

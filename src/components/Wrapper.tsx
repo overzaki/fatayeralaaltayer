@@ -1,32 +1,45 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import useStyleConfig from '../utils/styleConfig';
 import socket from '../utils/socket';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from "react-redux";
+import fetchData from "../../RTK/actions/ConfigData";
+import { AppDispatch } from "../../RTK/store/store";
 
 
 const Wrapper = ({ children }: { children: React.ReactElement }) => {
+  const dispatch = useDispatch<AppDispatch>()
   const router = useRouter();
   const { styles, updateStyles } = useStyleConfig();
+  const defaultDataState = useSelector((state: any) => state.configration);
 
   const builderId = router.query.builder_id || "";
 
-  console.log("builderId", builderId);
+  // console.log("builderId", builderId);
 
   useEffect(() => {
     if (builderId) {
       socket.on(`${builderId}:cmd`, (data) => {
-        console.log(data.result.foneStyle);
-        updateStyles({
-          fontStyle: data.result.foneStyle?.en
-        });
+        updateStyles(data.result);
       });
-    } else {
-      getStyleConfig();
     }
-  }, [builderId, updateStyles]);
+    if (!defaultDataState?.defaultData) {
+      getStyleConfig()
+    }
+  }, [builderId, defaultDataState]);
 
   const getStyleConfig = () => {
-    console.log("getStyleConfig Function Called");
+
+    const hostName: string = "impracticalcrumb372.overzaki.info";
+    // const hostName: string = window.location.hostname;
+    const designType: any = builderId ? 'temporary' : 'constant';
+
+    dispatch(fetchData({ hostName, designType })).then(
+      (response: any) => {
+        updateStyles(response.payload.design);
+      }
+    );
 
   }
 

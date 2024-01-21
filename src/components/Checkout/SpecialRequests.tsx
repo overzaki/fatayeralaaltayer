@@ -8,7 +8,7 @@ const SpecialRequests = () => {
         <DescriptionOutlinedIcon />
         <span>Any special request?</span>
       </div>
-      <span className="text-[#ba470d] cursor-pointer ">Add Note</span>
+      <span className="text-primary cursor-pointer ">Add Note</span>
     </div>
   );
 };

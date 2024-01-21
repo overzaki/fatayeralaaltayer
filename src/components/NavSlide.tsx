@@ -138,12 +138,12 @@ const NavSlide = ({ open, setOpen }: any) => {
                   </div>
 
                   <div className="flex flex-col space-y-3 my-4 px-4 sm:px-2 gap-1">
-                    <button className="rounded-md w-full text-white p-3 font-light hover:bg-[#f98c56] bg-[#BA470D] ">
+                    <button className="rounded-md w-full text-white p-3 font-light hover:bg-[#f98c56] bg-primary rounded-custom">
                       CREATE AN ACCOUNT
                     </button>
                     <p className="text-center text-xs">
                       Already a customer?{" "}
-                      <span className="text-[#ba470d]">Login</span>{" "}
+                      <span className="text-primary">Login</span>{" "}
                     </p>
                     <hr />
                     <h4 className="text-center text-sm font-semibold">
@@ -152,7 +152,7 @@ const NavSlide = ({ open, setOpen }: any) => {
                     <div className="flex w-full">
                       <div className="grid grid-cols-2 gap-2 w-full">
                         <div className="col-span">
-                          <button className="flex items-center justify-center gap-2 text-sm font-semibold w-full text-gray-900 rounded-md bg-white p-3 ring-1 ring-inset ring-gray-300">
+                          <button className="flex items-center justify-center gap-2 text-sm font-semibold w-full text-gray-900 rounded-custom bg-white p-3 ring-1 ring-inset ring-gray-300">
                             <Image
                               alt="apple"
                               src="/apple.png"
@@ -163,7 +163,7 @@ const NavSlide = ({ open, setOpen }: any) => {
                           </button>
                         </div>
                         <div className="col-span">
-                          <button className="flex items-center justify-center gap-2 text-sm w-full font-semibold text-gray-900 rounded-md bg-white p-3 ring-1 ring-inset ring-gray-300">
+                          <button className="flex items-center justify-center gap-2 text-sm w-full font-semibold text-gray-900 rounded-custom bg-white p-3 ring-1 ring-inset ring-gray-300">
                             <Image
                               alt="google"
                               src="/google.png"

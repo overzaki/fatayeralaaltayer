@@ -59,8 +59,8 @@ const ProductCard = ({
         <p className="w-full font-semibold ">{price} KWD</p>
         <AddIcon
           onClick={handleCart}
+          className="bg-primary"
           sx={{
-            backgroundColor: "#BA470D",
             borderRadius: "9999px",
             color: "white",
             cursor: "pointer",
