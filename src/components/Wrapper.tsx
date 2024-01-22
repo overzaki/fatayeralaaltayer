@@ -23,11 +23,12 @@ const Wrapper = ({ children }: { children: React.ReactElement }) => {
       socket.on(`${builderId}:cmd`, (data) => {
         updateStyles(data.result);
       });
+      getStyleConfig();
     }
     if (!defaultDataState?.defaultData) {
-      getStyleConfig()
+      getStyleConfig();
     }
-  }, [builderId, defaultDataState]);
+  }, [builderId]);
 
   const getStyleConfig = () => {
 
