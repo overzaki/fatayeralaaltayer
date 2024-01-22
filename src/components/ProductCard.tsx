@@ -4,7 +4,6 @@ import React from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import BasicModal from "./Modal";
-import ClickAwayListener from "react-click-away-listener";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import { addToCart } from "../../RTK/slices/cartReducer";
@@ -13,11 +12,15 @@ const ProductCard = ({
   price,
   desc,
   name,
+  productsLayout,
+  titleStyle,
 }: {
   id: number;
   price: number;
   desc: string;
   name: string;
+  productsLayout: number;
+  titleStyle: number;
 }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -31,17 +34,20 @@ const ProductCard = ({
   };
 
   return (
-    <div className="overflow-hidden sm:w-[280px]  max-sm:w-[150px] xl:w-[280px] lg:w-[220px] md:w-[320px] h-full  ">
+    <div
+      className={`overflow-hidden sm:w-[280px] ${productsLayout === 1 && "flex items-center !w-full gap-3"
+        }  xl:w-[280px] lg:w-[220px] md:w-[320px] h-full`}
+    >
       <Grid
         onClick={handleOpen}
-        className=" w-[320px] h-[320px] sm:w-[280px] sm:h-[280px] border max-sm:w-[150px] max-sm:h-[150px] lg:w-[220px] lg:h-[220px]  border-gray-300 rounded-lg xl:h-[280px] xl:w-[280px] overflow-hidden "
+        className={`w-[170px] ${titleStyle === 1 ? "" : titleStyle === 2 ? "relative" : "relative"
+          } flex items-center justify-center h-[200px] sm:w-[280px] sm:h-[280px] border lg:w-[220px] lg:h-[220px]  border-gray-300 rounded-lg xl:h-[270px] xl:w-[380px] overflow-hidden`}
         item
         xs={6}
       >
         <Image
           style={{
             borderRadius: "7px",
-            objectFit: "contain",
             cursor: "pointer",
           }}
           className="hover:scale-110 -z-1 duration-200"
@@ -50,22 +56,51 @@ const ProductCard = ({
           width={380}
           height={270}
         />
+        {titleStyle == 2 && (
+          <div
+            className={`absolute top-0 w-full h-full inset-0 bg-black/30 `}
+          />
+        )}
+        {titleStyle === 3 && (
+          <div
+            className={`absolute top-0 w-full h-full inset-0 bg-white/70 `}
+          />
+        )}
+        {titleStyle !== 1 && (
+          <p
+            className={`font-semibold absolute inset-0 flex items-center justify-center text-center ${titleStyle === 2
+              ? " text-white"
+              : titleStyle === 3
+                ? "text-blue-800"
+                : "text-white"
+              } text-white`}
+          >
+            {name}
+          </p>
+        )}
       </Grid>
-      <p className="line-clamp-1 font-semibold ">{name}</p>
-      <p className="w-full line-clamp-2 font-extralight break-all h-[50px] ">
-        {desc}
-      </p>
-      <div className="flex gap-2">
-        <p className="w-full font-semibold ">{price} KWD</p>
-        <AddIcon
-          onClick={handleCart}
-          className="bg-primary"
-          sx={{
-            borderRadius: "9999px",
-            color: "white",
-            cursor: "pointer",
-          }}
-        />
+
+      {titleStyle === 1 && (
+        <p className="font-semibold absolute inset-0 flex items-center justify-center text-center text-white">
+          {name}
+        </p>
+      )}
+      <div className="w-full">
+        <p className="w-full line-clamp-2 font-extralight break-all h-[50px] ">
+          {desc}
+        </p>
+        <div className="flex gap-2">
+          <p className="w-full font-semibold ">{price} KWD</p>
+          <AddIcon
+            onClick={handleCart}
+            className="bg-primary"
+            sx={{
+              borderRadius: "9999px",
+              color: "white",
+              cursor: "pointer",
+            }}
+          />
+        </div>
       </div>
 
       <BasicModal

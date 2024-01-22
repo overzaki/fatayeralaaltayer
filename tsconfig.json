@@ -28,8 +28,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/pages/index.js",
-    "src/utils/useStyleConfig.js"
+    "src/pages/index.tsx",
+    "src/utils/useStyleConfig.js",
+    "src/pages/_app.js"
   ],
   "exclude": ["node_modules"]
 }

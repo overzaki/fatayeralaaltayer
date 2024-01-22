@@ -1,7 +1,11 @@
 // utils/styleConfig.ts
 import { useEffect, useState } from "react";
+import { setDefaultData } from "../../RTK/slices/configReducer";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../RTK/store/store";
 
 const useStyleConfig = () => {
+  const dispatch = useDispatch();
   const [styles, setStyles] = useState<any>({});
 
   useEffect(() => {
@@ -32,6 +36,7 @@ const useStyleConfig = () => {
 
   const updateStyles = (newStyles: any): void => {
     setStyles((prevStyles: any) => ({ ...prevStyles, ...newStyles }));
+    dispatch(setDefaultData(newStyles));
   };
 
   return { styles, updateStyles };

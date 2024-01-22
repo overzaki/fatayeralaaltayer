@@ -11,7 +11,12 @@ let initialState = {
 const configSlice = createSlice({
   name: "configFile",
   initialState,
-  reducers: {},
+  reducers: {
+    setDefaultData: (state, action) => {
+      state.defaultData = action.payload;
+    },
+  },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.fulfilled, (state, action) => {
@@ -20,7 +25,8 @@ const configSlice = createSlice({
 
   },
 });
-export { fetchData };
+const { setDefaultData } = configSlice.actions;
+export { fetchData, setDefaultData };
 export default configSlice.reducer;
 
 

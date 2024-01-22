@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { sections } from "../constants/constants";
 import { ProductCard } from "../src/components";
+import { useSelector } from "react-redux";
 
 const Section = ({
   title,
@@ -9,6 +10,13 @@ const Section = ({
   title: string;
   products: Array<any>;
 }) => {
+
+  const configrationState = useSelector((state: any) => state?.configration);
+
+
+
+
+
   useEffect(() => {
     const navLinks = document.querySelectorAll(".navLink");
     const sections = document.querySelectorAll(".section");
@@ -28,18 +36,41 @@ const Section = ({
       });
     });
     return () => {
-      window.removeEventListener("scroll", () => {});
+      window.removeEventListener("scroll", () => { });
     };
   }, []);
+  const [productsLayout, setProductsLayout] = useState(2);
+  const [titleStyle, setTitleStyle] = useState(1);
+
+
+  useEffect(() => {
+    if (configrationState?.defaultData) {
+      const productStyleValue = configrationState?.defaultData?.layout?.homePage?.product?.rowType;
+      const titleStyleValue = configrationState?.defaultData?.css?.categoryShow;
+      setTitleStyle(Number(titleStyleValue) || 1);
+      setProductsLayout(Number(productStyleValue) || 1);
+    }
+  }, [configrationState?.defaultData])
+
+
   return (
     <div
       id={title.toLocaleLowerCase().split(" ").join("-")}
       className={`section mt-10`}
     >
       <h1 className="font-semibold ml-5 text-lg">{title}</h1>
-      <div className="grid place-items-center p-6 gap-6 rounded-lg mt-4 bg-white grid-cols-2 lg:grid-cols-4  ">
+      <div
+        className={`grid place-items-center p-6 gap-6 rounded-lg mt-4 bg-white ${productsLayout === 1
+          ? "grid grid-cols-1"
+          : productsLayout === 2
+            ? "grid grid-cols-3"
+            : "grid grid-cols-2"
+          } `}
+      >
         {products.map((product) => (
           <ProductCard
+            productsLayout={productsLayout}
+            titleStyle={titleStyle}
             id={product.id}
             name={product.name}
             price={product.price}
