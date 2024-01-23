@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   ArrowLeftIcon,
@@ -12,10 +12,24 @@ import {
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import GoogleMapReact from "google-map-react";
+import { useSelector } from "react-redux";
 
 const AnyReactComponent = ({ text }: any) => <div>{text}</div>;
 
 const StoreInfoSlide = ({ open, setOpen, paymentMethods }: any) => {
+
+  const [themeLogo, setthemeLogo] = useState<any>(null)
+  const configrationState = useSelector((state: any) => state?.configration);
+
+  useEffect(() => {
+    if (configrationState?.defaultData) {
+      const logoValue = configrationState?.defaultData?.builderId?.logo;
+      setthemeLogo(logoValue || "");
+    }
+  }, [configrationState?.defaultData])
+
+
+
   const [toggle, setToggle] = useState(false);
   const defaultProps = {
     center: {
@@ -270,7 +284,7 @@ const StoreInfoSlide = ({ open, setOpen, paymentMethods }: any) => {
                   <div className="flex items-center space-x-3 px-5 sm:px-2 pb-3">
                     <Image
                       className="inline-block h-20 w-20 rounded-full object-contain"
-                      src="/logo.jpg"
+                      src={themeLogo || "/logo.jpg"}
                       alt="logo"
                       width={150}
                       height={150}

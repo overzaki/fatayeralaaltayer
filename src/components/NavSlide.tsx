@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   ArrowLeftIcon,
@@ -9,8 +9,20 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/solid";
+import { useSelector } from "react-redux";
 
 const NavSlide = ({ open, setOpen }: any) => {
+
+  const [themeLogo, setthemeLogo] = useState<any>(null)
+  const configrationState = useSelector((state: any) => state?.configration);
+
+  useEffect(() => {
+    if (configrationState?.defaultData) {
+      const logoValue = configrationState?.defaultData?.builderId?.logo;
+      setthemeLogo(logoValue || "");
+    }
+  }, [configrationState?.defaultData])
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -66,7 +78,7 @@ const NavSlide = ({ open, setOpen }: any) => {
                         >
                           <Image
                             alt="logo"
-                            src="/logo.jpg"
+                            src={themeLogo || "/logo.jpg"}
                             width={90}
                             height={120}
                             style={{ height: "60px", objectFit: "cover" }}

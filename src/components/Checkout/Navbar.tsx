@@ -1,10 +1,23 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+
+  const [themeLogo, setthemeLogo] = useState<any>(null)
+  const configrationState = useSelector((state: any) => state?.configration);
+
+  useEffect(() => {
+    if (configrationState?.defaultData) {
+      const logoValue = configrationState?.defaultData?.builderId?.logo;
+      setthemeLogo(logoValue || "");
+    }
+  }, [configrationState?.defaultData])
+
+
   return (
     <nav className="bg-white shadow-md p-2 flex items-center justify-between w-full fixed top-0 z-50">
       <div className="flex items-center justify-between w-full mx-auto max-w-[1330px]">
@@ -15,7 +28,7 @@ const Navbar = () => {
           <div className="relative w-[50px] object-cover h-[50px] ">
             <Image
               alt="logo"
-              src="/fatayerlogo.jpg"
+              src={themeLogo || "/fatayerlogo.jpg"}
               layout="fill"
               className="absolute rounded-full object-cover "
             />

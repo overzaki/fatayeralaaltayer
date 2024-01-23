@@ -1,10 +1,22 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import PickupButton from "./PickupButton";
 import StoreInfoSlide from "../StoreInfoSlide";
+import { useSelector } from "react-redux";
 
 const PaymentBox = () => {
+
+  const [themeLogo, setthemeLogo] = useState<any>(null)
+  const configrationState = useSelector((state: any) => state?.configration);
+
+  useEffect(() => {
+    if (configrationState?.defaultData) {
+      const logoValue = configrationState?.defaultData?.builderId?.logo;
+      setthemeLogo(logoValue || "");
+    }
+  }, [configrationState?.defaultData])
+
   const [open, setOpen] = React.useState(false);
   const paymentMethods = [
     "/knet.png",
@@ -22,7 +34,7 @@ const PaymentBox = () => {
             className="flex border-b border-gray-300 gap-4  p-5 w-full items-center"
             onClick={() => setOpen(true)}
           >
-            <Image alt="logo" src="/logo.jpg" width={70} height={70} />
+            <Image alt="logo" src={themeLogo || "/logo.jpg"} width={70} height={70} />
             <div className="flex  items-center w-full justify-between">
               <div className="flex flex-col gap-3">
                 <h1 className=" text-[2.5vw] md:text-[1.8vw] font-semibold text-primary">
