@@ -18,7 +18,9 @@ const NavSlide = ({ open, setOpen }: any) => {
 
   useEffect(() => {
     if (configrationState?.defaultData) {
-      const logoValue = configrationState?.defaultData?.builderId?.logo;
+      // const logoValue = configrationState?.defaultData?.builderId?.logo;
+      let logoValue = configrationState?.defaultData?.logo;
+      logoValue = logoValue !== "empty value" ? logoValue : ""
       setthemeLogo(logoValue || "");
     }
   }, [configrationState?.defaultData])

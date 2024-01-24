@@ -17,7 +17,8 @@ const Hero = () => {
 
   return (
     <div className={`bg-[url(${themeHeaderImage || '/heroImage.jpg'})] rounded-lg z-10 relative overflow-hidden h-[455px] bg-no-repeat bg-center bg-cover `}
-      style={{ backgroundImage: `url('${themeHeaderImage || '/heroImage.jpg'}')` }} >
+      style={{ backgroundImage: `url('${themeHeaderImage || '/heroImage.jpg'}')` }}
+    >
       <div className="bg-black/20 z-0 hidden lg:flex w-full h-full "></div>
       <PaymentBox />
     </div>

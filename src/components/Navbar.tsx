@@ -1,5 +1,6 @@
 "use client";
-import React, { Fragment } from "react";
+
+import React, { Fragment, useEffect, useState } from "react";
 import NavbarButton from "./Navbar/NavbarButton";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
@@ -8,14 +9,21 @@ import { useRouter } from "next/navigation";
 import { Dialog, Popover, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import NavSlide from "./NavSlide";
-import Link from "next/link";
 import CartButton from "./Navbar/CartButton";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
 
-  const globalState = useSelector((state: any) => state.cartList);
+  const globalState: any = useSelector((state: any) => state?.cartList);
+
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+
+    setIsClient(true);
+  }, [])
+
 
   return (
     <>
@@ -38,7 +46,7 @@ const Navbar = () => {
 
       {/* if cart is not empty */}
 
-      {globalState?.selected?.length > 0 && (
+      {isClient && globalState?.selected?.length > 0 && (
         <div className="fixed flex bottom-0 bg-white h-24 w-full items-center justify-center px-4 z-20">
           <Link
             href={"/checkout"}

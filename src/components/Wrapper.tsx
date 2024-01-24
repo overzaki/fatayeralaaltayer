@@ -33,8 +33,8 @@ const Wrapper = ({ children }: { children: React.ReactElement }) => {
   const getStyleConfig = () => {
 
     // const hostName: string = "impracticalcrumb372.overzaki.info";
-    const hostName: string = "afiretrot3950.overzaki.info";
-    // const hostName: string = window.location.hostname;
+    // const hostName: string = "afiretrot3950.overzaki.info";
+    const hostName: string = window.location.hostname;
     const designType: any = builderId ? 'temporary' : 'constant';
 
     dispatch(fetchData({ hostName, designType })).then(
