@@ -14,6 +14,7 @@ const ProductCard = ({
   name,
   productsLayout,
   titleStyle,
+  images,
 }: {
   id: number;
   price: number;
@@ -21,6 +22,7 @@ const ProductCard = ({
   name: string;
   productsLayout: number;
   titleStyle: number;
+  images: Array<string>
 }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -51,7 +53,8 @@ const ProductCard = ({
             cursor: "pointer",
           }}
           className="hover:scale-110 -z-1 duration-200"
-          src={"/p2.png"}
+          // src={"/p2.png"}
+          src={images && images.length > 0 ? images[0] : ""}
           alt="men"
           width={380}
           height={270}
@@ -107,6 +110,7 @@ const ProductCard = ({
         id={id}
         desc={desc && desc}
         price={price}
+        images={images}
         name={name}
         handleClose={handleClose}
         handleOpen={handleOpen}

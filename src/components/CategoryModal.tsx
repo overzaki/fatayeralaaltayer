@@ -14,11 +14,13 @@ const CategoryModal = ({
   setOpen,
   handleClose,
   handleOpen,
+  list
 }: {
   open: boolean;
   setOpen: any;
   handleClose: any;
   handleOpen: any;
+  list: any
 }) => {
   const mobile = useMediaQuery("(max-width:500px)");
   const style = {
@@ -60,21 +62,21 @@ const CategoryModal = ({
             </div>
           </div>
           <div className="overflow-y-scroll max-h-screen noscrollbar ">
-            {sections.map((section) => (
+            {list && list.map((section: any) => (
               <div
                 onClick={() =>
                   handleLink(
-                    "#" + section.title.toLocaleLowerCase().split(" ").join("-")
+                    "#" + section.name.localized.toLocaleLowerCase().split(" ").join("-")
                   )
                 }
-                key={section.title}
+                key={section._id}
                 className="p-4 flex items-center justify-between border-b border-gray-200"
               >
-                <div className="font-semibold">{section.title}</div>
+                <div className="font-semibold">{section.name.localized}</div>
                 <div className="flex items-center">
-                  <div className="w-[30px] flex items-center justify-center h-[30px] text-white rounded-full bg-primary">
+                  {/* <div className="w-[30px] flex items-center justify-center h-[30px] text-white rounded-full bg-primary">
                     {section.products.length}
-                  </div>
+                  </div> */}
                   <ArrowForwardIosIcon />
                 </div>
               </div>

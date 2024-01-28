@@ -1,6 +1,6 @@
 // utils/styleConfig.ts
 import { useEffect, useState } from "react";
-import { setDefaultData } from "../../RTK/slices/configReducer";
+import { setDefaultData } from "../../RTK/slices/configReducer.ts";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../RTK/store/store";
 

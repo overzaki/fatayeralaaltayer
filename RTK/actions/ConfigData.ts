@@ -11,10 +11,10 @@ const fetchData = createAsyncThunk(
   async ({ hostName, designType }: any) => {
     try {
       if (hostName && designType) {
-        defaultConfig.headers["x-tenant-id"] = hostName;
+        // defaultConfig.headers["x-tenant-id"] = hostName;
         const response = await getRequest(
           `${endpoints.design}/config?domain=${hostName}&type=${designType}`,
-          defaultConfig
+          defaultConfig()
         );
         return response.data;
       }

@@ -7,7 +7,7 @@ import {
   removeAction,
   setConfigAction,
   setInitialState,
-} from "../actions/Cart.ts";
+} from "../actions/Cart";
 
 let initialState = setInitialState();
 

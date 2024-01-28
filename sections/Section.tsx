@@ -70,12 +70,13 @@ const Section = ({
         {products.map((product) => (
           <ProductCard
             productsLayout={productsLayout}
+            images={product.images}
             titleStyle={titleStyle}
-            id={product.id}
-            name={product.name}
+            id={product._id}
+            name={product?.name?.localized}
             price={product.price}
-            desc={product.desc}
-            key={product.name}
+            desc={product.description?.localized}
+            key={product._id}
           />
         ))}
       </div>

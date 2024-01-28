@@ -75,13 +75,42 @@ export async function deleteRequest(
 
 export const endpoints = {
   design: "/design",
-};
-
-export const defaultConfig = {
-  headers: {
-    "Content-Type": "application/json",
-    "x-tenant-id": "",
+  product: {
+    list: "/products",
+    details: "/product/details",
+    search: "/product/search",
+    varient: "/varient",
+    rows: "/rows",
+  },
+  category: {
+    create: "/categories",
+    _list: "/categories",
+    list: "/categories/all",
+    search: "/category/search",
   },
 };
+
+export const defaultConfig = () => {
+  const tanentId = localStorage.getItem("hostName");
+  let headersObj: any = {
+    "Content-Type": "application/json",
+  };
+  if (tanentId) {
+    headersObj = {
+      ...headersObj,
+      "x-tenant-id": tanentId,
+    };
+  }
+  return {
+    headers: headersObj,
+  };
+};
+
+// export const defaultConfig = {
+//   headers: {
+//     "Content-Type": "application/json",
+//     "x-tenant-id": "",
+//   },
+// };
 
 export interface IRequest {}

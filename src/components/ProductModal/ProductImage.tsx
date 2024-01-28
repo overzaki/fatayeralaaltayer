@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import Image from "next/image";
-const ProductImage = () => {
+const ProductImage = ({ images }: { images: any }) => {
   return (
     <Grid
       className="border border-gray-200 flex items-center justify-center h-max "
@@ -15,7 +15,8 @@ const ProductImage = () => {
           cursor: "pointer",
         }}
         className=""
-        src={"/p2.png"}
+        // src={"/p2.png"}
+        src={images && images.length > 0 ? images[0] : ""}
         alt="men"
         width={380}
         height={270}

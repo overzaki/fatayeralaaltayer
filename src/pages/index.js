@@ -6,15 +6,17 @@ import { sections } from "../../constants/constants";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchData from "../../RTK/actions/Products";
+import { fetchCategoriesList } from "../../RTK/actions/Categories"
 const Home = () => {
   const dispath = useDispatch();
   const globalState = useSelector((state) => state);
 
   useEffect(() => {
-    if (!globalState?.products?.list) {
+    if (!globalState?.products?.list || !globalState?.categories?.list) {
       dispath(fetchData());
+      dispath(fetchCategoriesList());
     }
-  }, [dispath, globalState?.products?.list]);
+  }, [dispath, globalState]);
 
   return (
     <div className="">
@@ -23,11 +25,11 @@ const Home = () => {
       <Wrapper>
         <>
           <SectionNavigator />
-          {globalState.products?.list?.map((section) => (
+          {globalState.categories?.list?.map((section) => (
             <Section
-              key={section.title}
-              products={section.products}
-              title={section.title}
+              key={section._id}
+              products={globalState?.products?.list?.filter((productObj) => productObj.categoryId === section._id) || []}
+              title={section.name.localized}
             />
           ))}
         </>

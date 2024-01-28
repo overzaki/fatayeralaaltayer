@@ -14,6 +14,7 @@ export default function BasicModal({
   price,
   desc,
   name,
+  images,
 }: {
   open: any;
   handleOpen: any;
@@ -22,6 +23,7 @@ export default function BasicModal({
   name: string;
   desc?: string;
   id: number;
+  images: Array<string>
 }) {
   return (
     <div className="flex">
@@ -54,7 +56,7 @@ export default function BasicModal({
             <CloseIcon />
           </div>
           <div className="flex items-start max-md:flex-col ">
-            <ProductImage />
+            <ProductImage images={images} />
             <Description id={id} desc={desc && desc} price={price} name={name} handleClose={handleClose} />
           </div>
         </div>
