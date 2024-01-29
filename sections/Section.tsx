@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { sections } from "../constants/constants";
 import { ProductCard } from "../src/components";
@@ -10,13 +11,8 @@ const Section = ({
   title: string;
   products: Array<any>;
 }) => {
-
   const configrationState = useSelector((state: any) => state?.configration);
-
-
-
-
-
+  const [navLinkStyle, setNavLinkStyle] = useState(1);
   useEffect(() => {
     const navLinks = document.querySelectorAll(".navLink");
     const sections = document.querySelectorAll(".section");
@@ -30,28 +26,31 @@ const Section = ({
       });
       navLinks.forEach((navItem: any) => {
         if (navItem.href.includes(currentSection)) {
-          document.querySelector(".active")?.classList.remove("active");
-          navItem.classList.add("active");
+          document
+            .querySelector(navLinkStyle === 1 ? ".active1" : ".active")
+            ?.classList.remove(navLinkStyle === 1 ? "active1" : "active");
+          navItem.classList.add(navLinkStyle === 1 ? "active1" : "active");
         }
       });
     });
     return () => {
-      window.removeEventListener("scroll", () => { });
+      window.removeEventListener("scroll", () => {});
     };
   }, []);
   const [productsLayout, setProductsLayout] = useState(2);
   const [titleStyle, setTitleStyle] = useState(1);
-
+  const [wishlistStyle, setWishListStyle] = useState(2);
+  const [imageStyle, setImageStyle] = useState(1);
 
   useEffect(() => {
     if (configrationState?.defaultData) {
-      const productStyleValue = configrationState?.defaultData?.layout?.homePage?.product?.rowType;
+      const productStyleValue =
+        configrationState?.defaultData?.layout?.homePage?.product?.rowType;
       const titleStyleValue = configrationState?.defaultData?.css?.categoryShow;
       setTitleStyle(Number(titleStyleValue) || 1);
       setProductsLayout(Number(productStyleValue) || 1);
     }
-  }, [configrationState?.defaultData])
-
+  }, [configrationState?.defaultData]);
 
   return (
     <div
@@ -60,15 +59,18 @@ const Section = ({
     >
       <h1 className="font-semibold ml-5 text-lg">{title}</h1>
       <div
-        className={`grid place-items-center p-6 gap-6 rounded-lg mt-4 bg-white ${productsLayout === 1
-          ? "grid grid-cols-1"
-          : productsLayout === 2
+        className={`grid place-items-center p-6 gap-6 rounded-lg mt-4 bg-white ${
+          productsLayout === 1
+            ? "grid grid-cols-1"
+            : productsLayout === 2
             ? "grid grid-cols-3"
             : "grid grid-cols-2"
-          } `}
+        } `}
       >
         {products.map((product) => (
           <ProductCard
+            imageStyle={imageStyle}
+            wishlistStyle={wishlistStyle}
             productsLayout={productsLayout}
             images={product.images}
             titleStyle={titleStyle}

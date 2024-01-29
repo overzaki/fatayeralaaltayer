@@ -1,15 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import useStyleConfig from '../utils/styleConfig';
-import socket from '../utils/socket';
-import { useRouter } from 'next/router';
+import useStyleConfig from "../utils/styleConfig";
+import socket from "../utils/socket";
+import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import fetchData from "../../RTK/actions/ConfigData";
 import { AppDispatch } from "../../RTK/store/store";
 
-
 const Wrapper = ({ children }: { children: React.ReactElement }) => {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { styles, updateStyles } = useStyleConfig();
   const defaultDataState = useSelector((state: any) => state.configration);
@@ -31,21 +30,16 @@ const Wrapper = ({ children }: { children: React.ReactElement }) => {
   }, [builderId]);
 
   const getStyleConfig = () => {
-
     // const hostName: string = "impracticalcrumb372.overzaki.info";
     // const hostName: string = "fadingvolatility202.overzaki.info";
     const hostName: string = window.location.hostname;
-    localStorage.setItem('hostName', hostName);
-    const designType: any = builderId ? 'temporary' : 'constant';
+    localStorage.setItem("hostName", hostName);
+    const designType: any = builderId ? "temporary" : "constant";
 
-    dispatch(fetchData({ hostName, designType })).then(
-      (response: any) => {
-        updateStyles(response.payload.design);
-      }
-    );
-
-  }
-
+    dispatch(fetchData({ hostName, designType })).then((response: any) => {
+      updateStyles(response?.payload?.design);
+    });
+  };
 
   return (
     <div className="xl:max-w-[1330px] lg:max-w-[1080px]  mx-auto ">

@@ -4,6 +4,7 @@ import SectionNavigator from "./SectionNavigator";
 import ProductCard from "./ProductCard";
 import Footer from "./Footer";
 import CategoryModal from "./CategoryModal";
+import Navbar2 from "./Navbar2";
 
 export {
   Navbar,

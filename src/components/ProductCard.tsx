@@ -7,14 +7,17 @@ import BasicModal from "./Modal";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import { addToCart } from "../../RTK/slices/cartReducer";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 const ProductCard = ({
   id,
+  imageStyle,
   price,
   desc,
   name,
   productsLayout,
   titleStyle,
   images,
+  wishlistStyle,
 }: {
   id: number;
   price: number;
@@ -22,7 +25,9 @@ const ProductCard = ({
   name: string;
   productsLayout: number;
   titleStyle: number;
-  images: Array<string>
+  images: Array<string>;
+  wishlistStyle: number;
+  imageStyle: number;
 }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -37,28 +42,42 @@ const ProductCard = ({
 
   return (
     <div
-      className={`overflow-hidden sm:w-[280px] ${productsLayout === 1 && "flex items-center !w-full gap-3"
-        }  xl:w-[280px] lg:w-[220px] md:w-[320px] h-full`}
+      className={`overflow-hidden sm:w-[280px] ${
+        productsLayout === 1 && "flex items-center !w-full gap-3"
+      }  xl:w-[280px] lg:w-[220px] md:w-[320px] h-full`}
     >
       <Grid
         onClick={handleOpen}
-        className={`w-[170px] ${titleStyle === 1 ? "" : titleStyle === 2 ? "relative" : "relative"
-          } flex items-center justify-center h-[200px] sm:w-[280px] sm:h-[280px] border lg:w-[220px] lg:h-[220px]  border-gray-300 rounded-lg xl:h-[270px] xl:w-[380px] overflow-hidden`}
+        className={`w-[170px] ${titleStyle === 1 ? "" : "relative"} ${
+          wishlistStyle && "relative"
+        } flex items-center justify-center h-[200px] sm:w-[280px]  sm:h-[280px] border lg:w-[220px] lg:h-[220px]  border-gray-300 
+         
+         xl:w-[280px] ${imageStyle === 1 ? "rounded-lg" : ""}  overflow-hidden`}
         item
         xs={6}
       >
         <Image
           style={{
-            borderRadius: "7px",
             cursor: "pointer",
           }}
-          className="hover:scale-110 -z-1 duration-200"
-          // src={"/p2.png"}
-          src={images && images.length > 0 ? images[0] : ""}
+          className="hover:scale-110 object-center -z-1 duration-200"
+          src={"/p2.png"}
+          // src={images && images.length > 0 ? images[0] : ""}
           alt="men"
           width={380}
           height={270}
         />
+
+        <FavoriteBorderOutlinedIcon
+          className={`absolute text-[38px] rounded-xl ${
+            wishlistStyle === 1
+              ? "top-2 right-2"
+              : wishlistStyle === 2
+              ? "bottom-2 right-2"
+              : "bottom-2 right-2"
+          } bg-white p-2`}
+        />
+
         {titleStyle == 2 && (
           <div
             className={`absolute top-0 w-full h-full inset-0 bg-black/30 `}
@@ -71,12 +90,13 @@ const ProductCard = ({
         )}
         {titleStyle !== 1 && (
           <p
-            className={`font-semibold absolute inset-0 flex items-center justify-center text-center ${titleStyle === 2
-              ? " text-white"
-              : titleStyle === 3
+            className={`font-semibold absolute inset-0 flex items-center justify-center text-center ${
+              titleStyle === 2
+                ? " text-white"
+                : titleStyle === 3
                 ? "text-blue-800"
                 : "text-white"
-              } text-white`}
+            } text-white`}
           >
             {name}
           </p>
@@ -88,6 +108,7 @@ const ProductCard = ({
           {name}
         </p>
       )}
+
       <div className="w-full">
         <p className="w-full line-clamp-2 font-extralight break-all h-[50px] ">
           {desc}

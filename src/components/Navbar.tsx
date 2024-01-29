@@ -20,10 +20,9 @@ const Navbar = () => {
 
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
-
     setIsClient(true);
-  }, [])
-
+  }, []);
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   return (
     <>
@@ -32,9 +31,11 @@ const Navbar = () => {
           <div onClick={() => setOpen(true)}>
             <NavbarButton Icon={PersonOutlineOutlinedIcon} />
           </div>
-          <div onClick={() => router.push("/search")}>
-            <NavbarButton Icon={SearchOutlinedIcon} />
-          </div>
+          {showSearchBar && (
+            <div onClick={() => router.push("/search")}>
+              <NavbarButton Icon={SearchOutlinedIcon} />
+            </div>
+          )}
         </div>
         <div className="flex items-center gap-3 text-white">
           <span className="text-xl">ﻉ</span>

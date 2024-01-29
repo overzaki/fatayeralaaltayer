@@ -43,6 +43,10 @@ body {
 .noscrollbar::-webkit-scrollbar {
   display: none;
 }
+.active1 {
+  /* background-color: #ba470d; */
+  border-bottom: 3px solid var(--primaryColor);
+}
 .active {
   /* background-color: #ba470d; */
   background-color: var(--primaryColor);

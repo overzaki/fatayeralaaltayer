@@ -1,17 +1,16 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Hero from "../components/Hero/Hero";
-import {
-  Navbar,
-  SectionNavigator,
-  Wrapper,
-} from "../components";
+import { Navbar, SectionNavigator, Wrapper } from "../components";
 import Section from "../../sections/Section";
+("use client");
 import { sections } from "../../constants/constants";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
-import store from '../../RTK/store/store'
+import store from "../../RTK/store/store";
 const Home = () => {
+  const [navLinkStyle, setNavLinkStyle] = useState(1);
+
   useEffect(() => {
     const navLinks = document.querySelectorAll(".navLink");
     const sections = document.querySelectorAll(".section");
@@ -25,8 +24,10 @@ const Home = () => {
       });
       navLinks.forEach((navLink) => {
         if (navLink.id.includes(currentSection)) {
-          document.querySelector(".active")?.classList.remove("active");
-          navLink.classList.add("active");
+          document
+            .querySelector(navLinkStyle === 1 ? ".active1" : ".active")
+            ?.classList.remove(navLinkStyle === 1 ? "active1" : "active");
+          navLink.classList.add(navLinkStyle === 1 ? "active1" : "active");
         }
       });
     });
