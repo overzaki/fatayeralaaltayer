@@ -22,7 +22,7 @@ const Home = () => {
 
   return (
     <div className="">
-      <Navbar2 />
+      {/* <Navbar2 /> */}
       <Navbar />
       <Hero />
       <Wrapper>

@@ -18,6 +18,10 @@ const SectionNavigator = () => {
   const dispath = useDispatch<AppDispatch>();
   const globalState = useSelector((state: any) => state);
   const [navigatorStyle, setNavigatorStyle] = useState(1);
+  const [itemsStyles, setItemsStyle] = useState(2);
+
+
+
   // images
   useEffect(() => {
     if (!globalState?.categories?.list) {
@@ -25,25 +29,21 @@ const SectionNavigator = () => {
     }
   }, [dispath, globalState]);
 
-  const [itemsStyles, setItemsStyle] = useState(2);
-
   return (
     <div className="flex mt-4 sticky top-20 pt-2  z-50 p-1 border border-gray-300 bg-white items-center justify-between">
       <div
-        className={`whitespace-nowrap ${
-          itemsStyles === 2 ? "grid grid-cols-5" : ""
-        } noscrollbar overflow-x-auto overflow-y-hidden`}
+        className={`whitespace-nowrap ${itemsStyles === 2 ? "grid grid-cols-5" : ""
+          } noscrollbar overflow-x-auto overflow-y-hidden`}
       >
         {globalState?.categories?.list &&
           globalState?.categories?.list.map((item: any) => (
             <Link
-              href={"#" + item?.title?.toLocaleLowerCase().split(" ").join("-")}
+              href={"#" + item?.name?.localized?.toLocaleLowerCase().split(" ").join("-")}
               key={item._id}
-              className={`p-3 navLink inline-block noscrollbar overflow-scroll px-4 duration-300 text-primary ${
-                navigatorStyle === 1 ? "rounded-none" : "rounded-full"
-              } rounded-full`}
+              className={`p-3 navLink inline-block noscrollbar overflow-scroll px-4 duration-300 text-primary ${navigatorStyle === 1 ? "rounded-none" : "rounded-full"
+                } rounded-full`}
             >
-              {item.title}
+              {item?.name?.localized}
             </Link>
           ))}
       </div>
