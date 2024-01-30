@@ -15,6 +15,7 @@ import Link from "next/link";
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
+  const configrationState = useSelector((state: any) => state?.configration);
 
   const globalState: any = useSelector((state: any) => state?.cartList);
 
@@ -22,7 +23,15 @@ const Navbar = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
-  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(true);
+  useEffect(() => {
+    if (configrationState?.defaultData) {
+      const searchbarValue =
+        configrationState?.defaultData?.layout?.productDetailsPage
+          ?.showSearchBarSection;
+      setShowSearchBar(searchbarValue);
+    }
+  }, []);
 
   return (
     <>

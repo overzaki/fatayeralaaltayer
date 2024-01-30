@@ -52,7 +52,9 @@ const ProductCard = ({
           wishlistStyle && "relative"
         } flex items-center justify-center h-[200px] sm:w-[280px]  sm:h-[280px] border lg:w-[220px] lg:h-[220px]  border-gray-300 
          
-         xl:w-[280px] ${imageStyle === 1 ? "rounded-lg" : ""}  overflow-hidden`}
+         xl:w-[280px] ${
+           imageStyle === 1 ? "rounded-lg" : "rounded-full"
+         }  overflow-hidden`}
         item
         xs={6}
       >

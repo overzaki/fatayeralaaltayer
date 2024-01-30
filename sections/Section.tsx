@@ -37,6 +37,7 @@ const Section = ({
       window.removeEventListener("scroll", () => {});
     };
   }, []);
+
   const [productsLayout, setProductsLayout] = useState(2);
   const [titleStyle, setTitleStyle] = useState(1);
   const [wishlistStyle, setWishListStyle] = useState(2);
@@ -47,6 +48,9 @@ const Section = ({
       const productStyleValue =
         configrationState?.defaultData?.layout?.homePage?.product?.rowType;
       const titleStyleValue = configrationState?.defaultData?.css?.categoryShow;
+      const imgStyle =
+        configrationState?.defaultData?.layout?.productPage?.imagesView;
+      setImageStyle(imgStyle === "empty value" ? 1 : 2);
       setTitleStyle(Number(titleStyleValue) || 1);
       setProductsLayout(Number(productStyleValue) || 1);
     }
