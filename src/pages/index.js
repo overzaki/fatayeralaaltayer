@@ -18,7 +18,7 @@ const Home = () => {
       dispath(fetchData());
       dispath(fetchCategoriesList());
     }
-  }, [dispath, globalState]);
+  }, [dispath]);
 
   return (
     <div className="">

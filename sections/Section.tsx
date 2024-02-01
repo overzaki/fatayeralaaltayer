@@ -34,7 +34,7 @@ const Section = ({
       });
     });
     return () => {
-      window.removeEventListener("scroll", () => {});
+      window.removeEventListener("scroll", () => { });
     };
   }, []);
 
@@ -63,13 +63,12 @@ const Section = ({
     >
       <h1 className="font-semibold ml-5 text-lg">{title}</h1>
       <div
-        className={`grid place-items-center p-6 gap-6 rounded-lg mt-4 bg-white ${
-          productsLayout === 1
-            ? "grid grid-cols-1"
-            : productsLayout === 2
+        className={`grid place-items-center p-6 gap-6 rounded-lg mt-4 bg-white ${productsLayout === 1
+          ? "grid grid-cols-1"
+          : productsLayout === 2
             ? "grid grid-cols-3"
             : "grid grid-cols-2"
-        } `}
+          } `}
       >
         {products.map((product) => (
           <ProductCard

@@ -17,7 +17,8 @@ const SectionNavigator = () => {
 
   const dispath = useDispatch<AppDispatch>();
   const globalState = useSelector((state: any) => state);
-  const [navigatorStyle, setNavigatorStyle] = useState(1);
+
+  const [navigatorStyle, setNavigatorStyle] = useState(2);
   const [itemsStyles, setItemsStyles] = useState(1);
 
   // images
@@ -37,15 +38,8 @@ const SectionNavigator = () => {
   return (
     <div className="flex mt-4 sticky top-20 pt-2  z-50 p-1 border border-gray-300 bg-white items-center justify-between">
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${Math.floor(
-            globalState?.categories?.list?.length / 2
-          )}, 1fr)`,
-        }}
-        className={`whitespace-nowrap ${
-          itemsStyles === 2 ? `grid ` : ""
-        } noscrollbar overflow-x-auto overflow-y-hidden`}
+        className={`whitespace-nowrap ${itemsStyles === 2 ? `grid grid-rows-2 grid-flow-col gap-4` : ""
+          } noscrollbar overflow-x-auto overflow-y-hidden`}
       >
         {globalState?.categories?.list &&
           globalState?.categories?.list.map((item: any) => (
@@ -55,9 +49,8 @@ const SectionNavigator = () => {
                 item?.name?.localized?.toLocaleLowerCase().split(" ").join("-")
               }
               key={item._id}
-              className={`p-3 navLink inline-block noscrollbar overflow-scroll px-4 duration-300 text-primary ${
-                navigatorStyle === 1 ? "rounded-none" : "rounded-full"
-              } rounded-full`}
+              className={`p-3 navLink inline-block noscrollbar overflow-scroll px-4 duration-300 text-primary ${navigatorStyle === 1 ? "rounded-full" : "rounded-none"
+                } rounded-full`}
             >
               {item?.name?.localized}
             </Link>
