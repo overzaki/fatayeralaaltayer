@@ -31,7 +31,7 @@ const Navbar = () => {
           ?.showSearchBarSection;
       setShowSearchBar(searchbarValue);
     }
-  }, []);
+  }, [configrationState?.defaultData]);
 
   return (
     <>
