@@ -4,8 +4,13 @@ import SectionNavigator from "./SectionNavigator";
 import ProductCard from "./ProductCard";
 import Footer from "./Footer";
 import CategoryModal from "./CategoryModal";
-import Navbar2 from "./Navbar2";
-
+// import Navbar2 from "./Navbar2";
+import VideoBanner from "./VideoBanner";
+import ImageTextBanner from "./ImageTextBanner";
+import ProductsCarousel from "./ProductsCarousel";
+import OfferNavbar from "./OfferNavbar";
+import Input from "./Input";
+import BannerSlider from "./BannerSlider";
 export {
   Navbar,
   SectionNavigator,
@@ -13,4 +18,10 @@ export {
   ProductCard,
   Footer,
   CategoryModal,
+  VideoBanner,
+  ImageTextBanner,
+  ProductsCarousel,
+  OfferNavbar,
+  Input,
+  BannerSlider,
 };

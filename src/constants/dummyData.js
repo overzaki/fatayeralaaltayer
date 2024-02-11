@@ -400,3 +400,48 @@ export const categoriesList = [
     title: "Drinks",
   },
 ];
+
+export const carouselData = [
+  {
+    name: "Zaatar Saj",
+    desc: "",
+    price: 0.65,
+    id: 23,
+  },
+  {
+    name: "Cheese Saj",
+    desc: "",
+    price: 0.75,
+    id: 24,
+  },
+  {
+    name: "Kraft Saj",
+    desc: "",
+    price: 0.75,
+    id: 25,
+  },
+  {
+    name: "Halloumi Saj",
+    desc: "",
+    price: 0.75,
+    id: 26,
+  },
+  {
+    name: "Mixed Cheese Saj",
+    desc: "",
+    price: 0.75,
+    id: 27,
+  },
+  {
+    name: "Labneh Saj",
+    desc: "",
+    price: 0.75,
+    id: 28,
+  },
+  {
+    name: "Spinach Saj",
+    desc: "",
+    price: 0.75,
+    id: 29,
+  },
+];

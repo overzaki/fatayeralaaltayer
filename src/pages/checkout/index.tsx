@@ -8,6 +8,7 @@ import SpecialRequests from "@/components/Checkout/SpecialRequests";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import GooglePayButton from "@google-pay/button-react";
 
 const Checkout = () => {
   const router = useRouter();

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { sections } from "../constants/constants";
 import { ProductCard } from "../src/components";
 import { useSelector } from "react-redux";
-
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 const Section = ({
   title,
   products,
@@ -34,7 +34,7 @@ const Section = ({
       });
     });
     return () => {
-      window.removeEventListener("scroll", () => { });
+      window.removeEventListener("scroll", () => {});
     };
   }, []);
 
@@ -42,6 +42,29 @@ const Section = ({
   const [titleStyle, setTitleStyle] = useState(1);
   const [wishlistStyle, setWishListStyle] = useState(2);
   const [imageStyle, setImageStyle] = useState(1);
+  const [foodProducts, setFoodProducts] = useState(products);
+  const [draggedItem, setDraggedItem] = useState(null);
+
+  const handleDragStart = (e, id) => {
+    setDraggedItem(id);
+  };
+
+  const handleDragOver = (e, id) => {
+    e.preventDefault();
+    if (draggedItem === id) return;
+
+    const draggedOverIndex = foodProducts?.findIndex((item) => item?.id === id);
+    const draggedItemIndex = foodProducts?.findIndex(
+      (item) => item.id === draggedItem
+    );
+
+    const updatedProducts = [...foodProducts];
+    const draggedItemData = updatedProducts[draggedItemIndex];
+    updatedProducts.splice(draggedItemIndex, 1);
+    updatedProducts.splice(draggedOverIndex, 0, draggedItemData);
+
+    setFoodProducts(updatedProducts);
+  };
 
   useEffect(() => {
     if (configrationState?.defaultData) {
@@ -62,27 +85,27 @@ const Section = ({
       className={`section mt-10`}
     >
       <h1 className="font-semibold ml-5 text-lg">{title}</h1>
-      <div
-        className={`grid place-items-center p-6 gap-6 rounded-lg mt-4 bg-white ${productsLayout === 1
-          ? "grid grid-cols-1"
-          : productsLayout === 2
-            ? "grid grid-cols-3"
-            : "grid grid-cols-2"
-          } `}
-      >
-        {products.map((product) => (
-          <ProductCard
-            imageStyle={imageStyle}
-            wishlistStyle={wishlistStyle}
-            productsLayout={productsLayout}
-            images={product.images}
-            titleStyle={titleStyle}
-            id={product._id}
-            name={product?.name?.localized}
-            price={product.price}
-            desc={product.description?.localized}
-            key={product._id}
-          />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 rounded-lg mt-4 bg-white">
+        {foodProducts.map((product) => (
+          <div
+            key={product?.id}
+            draggable
+            onDragStart={(e) => handleDragStart(e, product?.id)}
+            onDragOver={(e) => handleDragOver(e, product?.id)}
+            className="relative"
+          >
+            <ProductCard
+              imageStyle={imageStyle}
+              wishlistStyle={wishlistStyle}
+              productsLayout={productsLayout}
+              images={product?.images}
+              titleStyle={titleStyle}
+              id={product?.id}
+              name={product?.name?.localized}
+              price={product?.price}
+              desc={product?.description?.localized}
+            />
+          </div>
         ))}
       </div>
     </div>

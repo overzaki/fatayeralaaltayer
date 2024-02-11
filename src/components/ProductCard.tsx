@@ -9,6 +9,7 @@ import Image from "next/image";
 import { addToCart } from "../../RTK/slices/cartReducer";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 const ProductCard = ({
+  // provided,
   id,
   imageStyle,
   price,
@@ -20,14 +21,15 @@ const ProductCard = ({
   wishlistStyle,
 }: {
   id: number;
+  // provided: any;
   price: number;
   desc: string;
   name: string;
-  productsLayout: number;
-  titleStyle: number;
-  images: Array<string>;
-  wishlistStyle: number;
-  imageStyle: number;
+  productsLayout?: number;
+  titleStyle?: number;
+  images?: string;
+  wishlistStyle?: number;
+  imageStyle?: number;
 }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -42,9 +44,12 @@ const ProductCard = ({
 
   return (
     <div
+      // {...provided.draggableProps}
+      // {...provided.dragHandleProps}
+      // ref={provided.innerRef}
       className={`overflow-hidden sm:w-[280px] ${
         productsLayout === 1 && "flex items-center !w-full gap-3"
-      }  xl:w-[280px] lg:w-[220px] md:w-[320px] h-full`}
+      }  xl:w-[280px]  lg:w-[220px] md:w-[320px] h-full`}
     >
       <Grid
         onClick={handleOpen}

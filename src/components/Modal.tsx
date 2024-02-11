@@ -5,7 +5,6 @@ import Description from "./ProductModal/Description";
 import ProductImage from "./ProductModal/ProductImage";
 import CloseIcon from "@mui/icons-material/Close";
 
-
 export default function BasicModal({
   id,
   open,
@@ -23,7 +22,7 @@ export default function BasicModal({
   name: string;
   desc?: string;
   id: number;
-  images: Array<string>
+  images: string;
 }) {
   return (
     <div className="flex">
@@ -57,7 +56,13 @@ export default function BasicModal({
           </div>
           <div className="flex items-start max-md:flex-col ">
             <ProductImage images={images} />
-            <Description id={id} desc={desc && desc} price={price} name={name} handleClose={handleClose} />
+            <Description
+              id={id}
+              desc={desc && desc}
+              price={price}
+              name={name}
+              handleClose={handleClose}
+            />
           </div>
         </div>
       </Modal>

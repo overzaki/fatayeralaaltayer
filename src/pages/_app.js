@@ -1,11 +1,10 @@
 import { Provider } from "react-redux";
 // import Store from "../../RTK/store/store";
-import store from "../../RTK/store/store"
-import '../app/globals.css';
+import store from "../../RTK/store/store";
+import "../app/globals.css";
 // ... other necessary CSS imports
 import Head from "next/head";
-import Footer from '../components/Footer';
-
+import Footer from "../components/Footer";
 
 function MyApp({ Component, pageProps }) {
   return (
