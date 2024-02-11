@@ -11,7 +11,7 @@ import NavSlide from "./NavSlide";
 import CartButton from "./Navbar/CartButton";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import { Input } from ".";
+import { Image, Input, Span } from ".";
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
@@ -215,7 +215,7 @@ const Navbar = () => {
             (item) => item?.key == "mobile_home_app_bar_show_icon_drawer"
           )?.show && (
             <div onClick={() => setOpen(true)}>
-              <img
+              <Image
                 style={{
                   ...iconStyle,
                   border:
@@ -233,7 +233,7 @@ const Navbar = () => {
           )}
           {appBarSearch.position === "left" && (
             <div onClick={() => router.push("/search")}>
-              <img
+              <Image
                 style={{
                   ...iconStyle,
                   border:
@@ -251,7 +251,7 @@ const Navbar = () => {
           <div className="flex items-center">
             {appBarLogo.position === "left" && (
               <div className="flex items-center">
-                <img
+                <Image
                   // Style of centered Section
                   style={{
                     width: appBarLogo?.width,
@@ -262,17 +262,15 @@ const Navbar = () => {
                 />
 
                 {appBarLogo?.text && (
-                  <span
+                  <Span
                     style={{
                       fontSize: appBarLogo?.size,
                       fontWeight: appBarLogo?.isBold ? 800 : "400",
                       color: appBarLogo?.color,
                       lineClamp: appBarLogo?.numberOfLines,
                     }}
-                  >
-                    {/* Cnter text as in the state */}
-                    {appBarLogo?.text}
-                  </span>
+                    text={appBarLogo?.text}
+                  />
                 )}
               </div>
             )}
@@ -280,9 +278,9 @@ const Navbar = () => {
         </div>
         {/* Center */}
         <div className="flex items-center">
-          {appBarLogo.position === "center" && (
+          {appBarLogo?.position === "center" && (
             <div className="flex items-center">
-              <img
+              <Image
                 // Style of centered Section
                 style={{ width: appBarLogo?.width, height: appBarLogo?.height }}
                 // Image link
@@ -290,17 +288,15 @@ const Navbar = () => {
               />
 
               {appBarLogo?.text && (
-                <span
+                <Span
                   style={{
                     fontSize: appBarLogo?.size,
                     fontWeight: appBarLogo?.isBold ? 800 : "400",
                     color: appBarLogo?.color,
                     lineClamp: appBarLogo?.numberOfLines,
                   }}
-                >
-                  {/* Cnter text as in the state */}
-                  {appBarLogo?.text}
-                </span>
+                  text={appBarLogo?.text}
+                />
               )}
             </div>
           )}
@@ -320,9 +316,9 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3 text-white">
-          {appBarLogo.position === "right" && (
+          {appBarLogo?.position === "right" && (
             <div className="flex items-center">
-              <img
+              <Image
                 // Style of centered Section
                 style={{ width: appBarLogo?.width, height: appBarLogo?.height }}
                 // Image link
@@ -330,17 +326,15 @@ const Navbar = () => {
               />
 
               {appBarLogo?.text && (
-                <span
+                <Span
                   style={{
                     fontSize: appBarLogo?.size,
                     fontWeight: appBarLogo?.isBold ? 800 : "400",
                     color: appBarLogo?.color,
                     lineClamp: appBarLogo?.numberOfLines,
                   }}
-                >
-                  {/* Cnter text as in the state */}
-                  {appBarLogo?.text}
-                </span>
+                  text={appBarLogo?.text}
+                />
               )}
             </div>
           )}
@@ -357,32 +351,32 @@ const Navbar = () => {
             />
           )}
           {appBarRightDetails?.find(
-            (item) => item.key == "mobile_home_app_bar_show_icon_lang"
-          ).show && (
-            <img
+            (item) => item?.key == "mobile_home_app_bar_show_icon_lang"
+          )?.show && (
+            <Image
               style={{
                 ...iconStyle,
                 border:
-                  iconStyle.border.toString() +
-                  `px solid ${iconStyle.borderColor}`,
+                  iconStyle?.border?.toString() +
+                  `px solid ${iconStyle?.borderColor}`,
               }}
               src={
                 appBarRightDetails?.find(
-                  (item) => item.key == "mobile_home_app_bar_show_icon_lang"
+                  (item) => item?.key == "mobile_home_app_bar_show_icon_lang"
                 )?.icon
               }
             />
           )}
           {/* <ShoppingCartOutlinedIcon /> */}
           {appBarRightDetails?.find(
-            (item) => item.key == "mobile_home_app_bar_show_icon_cart"
-          ).show && (
-            <img
+            (item) => item?.key == "mobile_home_app_bar_show_icon_cart"
+          )?.show && (
+            <Image
               style={{
                 ...iconStyle,
                 border:
-                  iconStyle.border.toString() +
-                  `px solid ${iconStyle.borderColor}`,
+                  iconStyle?.border?.toString() +
+                  `px solid ${iconStyle?.borderColor}`,
               }}
               src={
                 appBarRightDetails?.find(

@@ -11,6 +11,8 @@ import ProductsCarousel from "./ProductsCarousel";
 import OfferNavbar from "./OfferNavbar";
 import Input from "./Input";
 import BannerSlider from "./BannerSlider";
+import Image from "./Image";
+import Span from "./Span";
 export {
   Navbar,
   SectionNavigator,
@@ -24,4 +26,6 @@ export {
   OfferNavbar,
   Input,
   BannerSlider,
+  Image,
+  Span,
 };
