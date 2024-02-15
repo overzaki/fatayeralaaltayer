@@ -3,16 +3,38 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
+import { useRouter } from "next/navigation";
 const OfferNavbar = () => {
+  const router = useRouter();
   const [adAppbar, setAdAppbar] = useState({
-    width: "",
-    height: "",
-    backgroundColor: "",
+    width: "100%",
+    height: "60px",
+    backgroundColor: "white",
     AdText: "",
     href: "",
     textPosition: "",
-    slider: ["Hassaan", "Ahmed", "Jr"],
+    Slider: [
+      {
+        text: "Hamad",
+        imageURL:
+          "https://1000logos.net/wp-content/uploads/2020/09/James-Bond-Logo-2012.png",
+        href: "/search",
+      },
+      {
+        text: "Hamad",
+        imageURL:
+          "https://1000logos.net/wp-content/uploads/2020/09/James-Bond-Logo-2012.png",
+        href: "/checkout",
+      },
+      {
+        text: "Hamad",
+        imageURL:
+          "https://1000logos.net/wp-content/uploads/2020/09/James-Bond-Logo-2012.png",
+        href: "",
+      },
+    ],
   });
+  const { Slider, ...restOfStyles } = adAppbar;
   return (
     <Swiper
       modules={[Autoplay]}
@@ -20,12 +42,23 @@ const OfferNavbar = () => {
       loop
       className="w-full flex items-center justify-center"
     >
-      {adAppbar?.slider?.map((item) => (
+      {adAppbar?.Slider?.map((item, i) => (
         <SwiperSlide
-          className="text-center text-lg font-semibold w-full p-2"
-          key={item}
+          style={{
+            ...restOfStyles,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          key={i}
         >
-          {item}
+          <div
+            onClick={item?.href ? () => router.push(item?.href) : () => {}}
+            className="flex cursor-pointer items-center w-full justify-center"
+          >
+            <img className="w-8 h-8" src={item?.imageURL} />
+            <span>{item?.text}</span>
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>

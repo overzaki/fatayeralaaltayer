@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Hero from "../components/Hero/Hero";
 import {
   BannerSlider,
+  BrandAds,
   ImageTextBanner,
   Navbar,
   OfferNavbar,
@@ -19,6 +20,7 @@ import { fetchCategoriesList } from "../../RTK/actions/Categories";
 import { productsList } from "../constants/dummyData";
 import Navbar2 from "../components/Navbar2";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import PreLoader from "@/components/Preloader/PreLoader";
 const Home = () => {
   const dispath = useDispatch();
   const globalState = useSelector((state) => state);
@@ -43,21 +45,53 @@ const Home = () => {
 
     bannerBackground: {
       status: true,
-      backgroundType: "slider",
-      image: "",
-      video: "",
+      backgroundType: "video",
+      image: {
+        src: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
+        text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,",
+        textStatus: true,
+        style: {
+          top: "90px",
+          left: "30px",
+          fontWeight: 300,
+          color: "red",
+        },
+        adjustPicturePosition: "10%",
+      },
+
       slider: [
         {
           src: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
-          text: "",
+          text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,",
+          textStatus: true,
+          style: {
+            top: "90px",
+            left: "90px",
+            fontWeight: 900,
+            color: "blue",
+          },
         },
         {
           src: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
-          text: "",
+          text: "007",
+          textStatus: true,
+          style: {
+            top: "10px",
+            left: "10px",
+            fontWeight: 900,
+            color: "red",
+          },
         },
         {
           src: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
-          text: "",
+          text: "Hassaan 82 007",
+          textStatus: true,
+          style: {
+            top: "10px",
+            left: "10px",
+            fontWeight: 900,
+            color: "red",
+          },
         },
       ],
     },
@@ -66,33 +100,38 @@ const Home = () => {
   return (
     <div className="">
       {/* <Navbar2 /> */}
+      {/* <PreLoader /> */}
       <OfferNavbar />
-
       <Navbar />
       <Hero />
-      <SectionNavigator />
 
       {bannerDetails?.bannerBackground?.backgroundType === "video" ? (
         <VideoBanner />
       ) : bannerDetails?.bannerBackground?.backgroundType === "image" ? (
-        <Wrapper>
-          <ImageTextBanner />
-        </Wrapper>
+        <ImageTextBanner data={bannerDetails?.bannerBackground?.image} />
       ) : (
-        <BannerSlider data={bannerDetails.bannerBackground.slider} />
+        <BannerSlider data={bannerDetails?.bannerBackground?.slider} />
       )}
 
-      {globalState.categories?.list?.map((section) => (
-        <Section
-          key={section._id}
-          products={
-            globalState?.products?.list?.filter(
-              (productObj) => productObj.categoryId === section._id
-            ) || []
-          }
-          title={section.name.localized}
-        />
-      ))}
+      <Wrapper>
+        <>
+          <BrandAds />
+          <SectionNavigator />
+
+          {globalState.categories?.list?.map((section) => (
+            <Section
+              key={section._id}
+              products={
+                globalState?.products?.list?.filter(
+                  (productObj) => productObj.categoryId === section._id
+                ) || []
+              }
+              title={section.name.localized}
+            />
+          ))}
+        </>
+      </Wrapper>
+      <ProductsCarousel />
     </div>
   );
 };

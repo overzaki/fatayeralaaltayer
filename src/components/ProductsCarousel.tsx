@@ -8,6 +8,9 @@ import "swiper/css/navigation";
 import { ProductCard } from ".";
 import PrCard from "./PrCard";
 import "./carousel.css";
+import ProductCard2 from "./ProductCard2";
+import ProductCard3 from "./ProductCard3";
+import ProductCard4 from "./ProductCard4";
 
 const ProductsCarousel = () => {
   return (
@@ -20,15 +23,15 @@ const ProductsCarousel = () => {
         clickable: true,
       }}
       navigation={true}
-      modules={[Pagination, Navigation]}
+      modules={[Navigation]}
       centeredSlides
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper: any) => console.log(swiper)}
-      className="mt-8 relative"
+      className="mt-32 min-h-full"
     >
       {carouselData.map((item, i) => (
-        <SwiperSlide key={i}>
-          <PrCard />
+        <SwiperSlide className="min-h-full pt-32" key={i}>
+          <ProductCard3 />
         </SwiperSlide>
       ))}
     </Swiper>

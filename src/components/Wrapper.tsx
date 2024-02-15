@@ -14,13 +14,13 @@ const Wrapper = ({ children }: { children: React.ReactElement }) => {
   const defaultDataState = useSelector((state: any) => state.configration);
 
   const builderId = router.query.builder_id || "";
-
-  // console.log("builderId", builderId);
+  // const builderId = "65bdd3cecf06522f6935b45f";
 
   useEffect(() => {
     if (builderId) {
       socket.on(`${builderId}:cmd`, (data) => {
         updateStyles(data.result);
+        console.log(data.result);
       });
       getStyleConfig();
     }
@@ -30,9 +30,10 @@ const Wrapper = ({ children }: { children: React.ReactElement }) => {
   }, [builderId]);
 
   const getStyleConfig = () => {
-    const hostName: string = "fadingvolatility202.overzaki.info"; // working...
-    // const hostName: string = "robustidiot5576.overzaki.info"; // working...
+    // const hostName: string = "fadingvolatility202.overzaki.info"; // working...
+    const hostName: string = "robustidiot5576.overzaki.info"; // working...
     // const hostName: string = window.location.hostname;
+
     localStorage.setItem("hostName", hostName);
     const designType: any = builderId ? "temporary" : "constant";
 
@@ -42,7 +43,7 @@ const Wrapper = ({ children }: { children: React.ReactElement }) => {
   };
 
   return (
-    <div className="xl:max-w-[1330px] lg:max-w-[1080px]  mx-auto ">
+    <div className="xl:max-w-[1330px] lg:max-w-[1080px] mx-auto ">
       {children}
     </div>
   );

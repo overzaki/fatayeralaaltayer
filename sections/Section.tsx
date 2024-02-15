@@ -77,6 +77,7 @@ const Section = ({
       setTitleStyle(Number(titleStyleValue) || 1);
       setProductsLayout(Number(productStyleValue) || 1);
     }
+    // console.log(configrationState?.defaultData);
   }, [configrationState?.defaultData]);
 
   return (

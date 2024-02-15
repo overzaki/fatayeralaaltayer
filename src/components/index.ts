@@ -13,6 +13,7 @@ import Input from "./Input";
 import BannerSlider from "./BannerSlider";
 import Image from "./Image";
 import Span from "./Span";
+import BrandAds from "./BrandAds";
 export {
   Navbar,
   SectionNavigator,
@@ -28,4 +29,5 @@ export {
   BannerSlider,
   Image,
   Span,
+  BrandAds,
 };

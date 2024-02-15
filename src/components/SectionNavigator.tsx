@@ -17,10 +17,25 @@ const SectionNavigator = () => {
 
   const dispath = useDispatch<AppDispatch>();
   const globalState = useSelector((state: any) => state);
+  const [isHovered, setIsHovered] = useState(false);
 
   const [navigatorStyle, setNavigatorStyle] = useState(2);
-  const [itemsStyles, setItemsStyles] = useState(1);
-
+  const [itemsStyles, setItemsStyles] = useState(2);
+  const [categories, setCategories] = useState({
+    categoriesBar: {
+      status: true,
+      backgroundColor: "white",
+      borderRadius: "60px",
+      shadow: "2",
+    },
+    categoriesList: {
+      color: "blue",
+      backgroundColor: "",
+      hoverColor: "black",
+      position: "left",
+    },
+    categoryView: "1,2,3,4",
+  });
   // images
   useEffect(() => {
     if (!globalState?.categories?.list) {
@@ -34,43 +49,85 @@ const SectionNavigator = () => {
       setItemsStyles(itemsStyle === "empty value" ? 2 : itemsStyle);
     }
   }, [globalState?.configration]);
+  const hoverColor = categories?.categoriesList?.hoverColor;
 
   return (
-    <div className="flex mt-4  top-20 pt-2  z-50 p-1 border border-gray-300 bg-white items-center justify-between">
+    categories?.categoriesBar?.status && (
       <div
-        className={`whitespace-nowrap ${
-          itemsStyles === 2 ? `grid grid-rows-2 grid-flow-col gap-4` : ""
-        } noscrollbar overflow-x-auto overflow-y-hidden`}
+        style={{
+          ...categories?.categoriesBar,
+          boxShadow:
+            categories?.categoriesBar?.shadow !== "none"
+              ? "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+              : "",
+        }}
+        className="flex mt-4  top-20 pt-2  z-50 p-1 border border-gray-300 bg-white items-center"
       >
-        {globalState?.categories?.list &&
-          globalState?.categories?.list.map((item: any) => (
-            <Link
-              href={
-                "#" +
-                item?.name?.localized?.toLocaleLowerCase().split(" ").join("-")
-              }
-              key={item._id}
-              className={`p-3 navLink inline-block noscrollbar overflow-scroll px-4 duration-300 text-primary ${
-                navigatorStyle === 1 ? "rounded-full" : "rounded-none"
-              } rounded-full`}
-            >
-              {item?.name?.localized}
-            </Link>
-          ))}
-      </div>
-      <div className="border-l px-3 border-gray-300">
-        <div className="cursor-pointer" onClick={handleOpen}>
-          <WindowOutlinedIcon className="text-primary" sx={{ fontSize: 28 }} />
+        <div
+          className={`whitespace-nowrap ${
+            itemsStyles === 2 ? `grid grid-rows-2 grid-flow-col gap-4` : ""
+          } noscrollbar overflow-x-auto w-full ${
+            categories?.categoriesList?.position === "right"
+              ? "justify-end"
+              : categories?.categoriesList?.position === "left"
+              ? "justify-start"
+              : "justify-center"
+          } overflow-y-hidden`}
+        >
+          {globalState?.categories?.list &&
+            globalState?.categories?.list.map((item: any) => (
+              <Link
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(item?.name?.localized)}
+                href={
+                  "#" +
+                  item?.name?.localized
+                    ?.toLocaleLowerCase()
+                    .split(" ")
+                    .join("-")
+                }
+                key={item._id}
+                style={{
+                  ...categories?.categoriesList,
+                  color:
+                    isHovered === item?.name?.localized && hoverColor
+                      ? hoverColor
+                      : categories?.categoriesList?.color,
+                }}
+                className={`p-3 navLink inline-block noscrollbar overflow-scroll px-4 duration-300  ${
+                  navigatorStyle === 1 ? "rounded-full" : "rounded-none"
+                } rounded-full`}
+              >
+                <div className="flex shadow-lg rounded-full p-1 flex-col items-center">
+                  <img
+                    className="w-16 h-16 object-cover rounded-full"
+                    src={item?.image}
+                  />
+                  <span className="text-center">{item?.name?.localized}</span>
+                </div>
+              </Link>
+            ))}
         </div>
-        <CategoryModal
-          open={open}
-          setOpen={setOpen}
-          handleClose={handleClose}
-          list={globalState?.categories?.list}
-          handleOpen={handleOpen}
-        />
+        <div className="border-l px-3 border-gray-300">
+          <div
+            className="cursor-pointer flex items-end justify-end"
+            onClick={handleOpen}
+          >
+            <WindowOutlinedIcon
+              className="text-primary"
+              sx={{ fontSize: 28 }}
+            />
+          </div>
+          <CategoryModal
+            open={open}
+            setOpen={setOpen}
+            handleClose={handleClose}
+            list={globalState?.categories?.list}
+            handleOpen={handleOpen}
+          />
+        </div>
       </div>
-    </div>
+    )
   );
 };
 

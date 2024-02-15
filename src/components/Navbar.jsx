@@ -12,28 +12,47 @@ import CartButton from "./Navbar/CartButton";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { Image, Input, Span } from ".";
+import { useMediaQuery } from "@mui/material";
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const matches = useMediaQuery("(max-width:600px)");
   const router = useRouter();
-  const configrationState = useSelector((state: any) => state?.configration);
-  const [appBarContainer, setAppBarContainer] = useState({
-    display: "flex",
-    boxShadow: "none",
-    startColor: "#00000010",
-    finalColor: "#00000000",
-    width: "100%",
-    height: "80px",
-    backgroundColor: "white", // Changed To White
-    backgroundColorDark: "#000000",
-    borderPosition: "bottom",
-    marginBottom: "20px",
-    borderWidth: "0px",
-    borderColor: "none",
-    borderColorDark: "#F5F5F8",
-    isCenterTitle: false,
-    containerViewStyle: {
-      marginBottom: 20,
+  const configrationState = useSelector((state) => state?.configration);
+  const [generalIcons, setGeneralIcons] = useState({
+    color: "transparent",
+    border: "",
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+    backgroundColor: "transparent",
+  });
+  const [appBarSearch, setAppBarSearch] = useState({
+    status: true,
+    icon: "https://i.imgur.com/K79NGcT.png",
+    position: "left",
+    input: true,
+    textColor: "black",
+    borderColor: "blue",
+    borderWidth: "5",
+    mobileView: {
+      status: "true, false",
+      position: "left, center",
+      width: "",
+      height: "",
     },
+  });
+
+  const [themeLogo, setThemeLogo] = useState < any > null;
+
+  const [logoObj, setLogoObj] = useState < any > null;
+
+  const [appBarContainer, setAppBarContainer] = useState({
+    show: true,
+    boxShadow: "none, 1,2,3,4",
+    backgroundColor: "white",
+    width: "100%",
+    height: "90px",
   });
   const [appBarRightDetails, setAppBarRightDetails] = useState([
     {
@@ -89,7 +108,7 @@ const Navbar = () => {
       screen: "drawer",
     },
   ]);
-  const globalState: any = useSelector((state: any) => state?.cartList);
+  const globalState = useSelector((state) => state?.cartList);
 
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
@@ -102,6 +121,15 @@ const Navbar = () => {
         configrationState?.defaultData?.layout?.productDetailsPage
           ?.showSearchBarSection;
       setShowSearchBar(searchbarValue);
+      let logoValue = configrationState?.defaultData?.logo;
+      logoValue = logoValue !== "empty value" ? logoValue : "";
+      setThemeLogo(logoValue || "");
+      // setAppBarSearch({
+      //   ...configrationState?.defaultData?.appBar?.search,
+      //   status: true,
+      // });
+      // setAppBarContainer(configrationState?.defaultData?.appBar?.container);
+      setLogoObj(configrationState?.defaultData?.appBar?.logoObj);
     }
   }, [configrationState?.defaultData]);
   const [iconStyle, setIconStyle] = useState({
@@ -154,60 +182,71 @@ const Navbar = () => {
     style: [],
   });
 
-  const [appBarSearch, setAppBarSearch] = useState({
-    status: true,
-    icon: "",
-    position: "center",
-    input: true,
-    placeholder: "Search",
-    textColor: "red",
-    borderColor: "red",
-    borderWidth: "1",
-    mobileView: {
-      status: true,
-      width: "",
-      height: "",
-    },
-  });
   // Banner
   const [appBarLogo, setAppBarLogo] = useState({
-    status: true,
+    status: "true",
     position: "left",
-    logo: "https://i.imgur.com/lhzK1Ly.png",
-    text: "Hassaan",
-    size: "18px",
-    isBold: true,
-    color: "#000000",
-    colorDark: "#FFFFFF",
-    numberOfLines: 1,
-    style: [],
-    borderColor: "",
-    borderWidth: "",
-    width: "50px",
-    height: "50px",
+    text: {
+      value: "Hassaan",
+      color: "black",
+      backgroundColor: "",
+    },
+    logo: {
+      url: "https://overzaki.fra1.cdn.digitaloceanspaces.com/robustidiot5576.overzaki.info/image/design/1707763191248-desktop-wallpaper-cobra-logo-computer-cobra-commander-computer.jpg",
+      borderColor: "",
+      borderWidth: "",
+      width: "40px",
+      height: "40px",
+      borderRadius: "10%",
+    },
   });
+
+  const [centerMenu, setCenterMenu] = useState({
+    status: true,
+    menuItems: [
+      {
+        name: "Hamad",
+        link: "",
+      },
+      {
+        name: "Hamad 2",
+        link: "",
+      },
+    ],
+    style: {
+      size: "18px",
+      color: "red",
+      backgroundColor: "transparent",
+      hoverColor: "black",
+      fontWeight: 100,
+      fontStyle: "",
+    },
+  });
+
   return (
     <>
       <div
         style={{
           ...appBarContainer,
-          borderBottom:
-            appBarContainer.borderPosition === "bottom"
-              ? `1px solid ${appBarContainer.borderColor}`
-              : "none",
-          borderTop:
-            appBarContainer.borderPosition === "top"
-              ? `1px solid ${appBarContainer.borderColor}`
-              : "none",
-          borderLeft:
-            appBarContainer.borderPosition === "left"
-              ? `1px solid ${appBarContainer.borderColor}`
-              : "none",
-          borderRight:
-            appBarContainer.borderPosition === "right"
-              ? `1px solid ${appBarContainer.borderColor}`
-              : "none",
+          display: appBarContainer?.show ? "flex" : "none",
+          boxShadow:
+            appBarContainer?.boxShadow !== "none"
+              ? "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+              : "",
         }}
+        // borderTop:
+        //   appBarContainer.borderPosition === "top"
+        //     ? `1px solid ${appBarContainer.borderColor}`
+        //     : "none",
+        // borderLeft:
+        //   appBarContainer.borderPosition === "left"
+        //     ? `1px solid ${appBarContainer.borderColor}`
+        //     : "none",
+        // borderRight:
+        //   appBarContainer.borderPosition === "right"
+        //     ? `1px solid ${appBarContainer.borderColor}`
+        //     : "none",
+
         className=" bg-transparent z-60 px-6 py-4 sticky w-full top-0 flex items-center justify-between"
       >
         <div className="flex items-center gap-2">
@@ -217,10 +256,9 @@ const Navbar = () => {
             <div onClick={() => setOpen(true)}>
               <Image
                 style={{
-                  ...iconStyle,
-                  border:
-                    iconStyle.border.toString() +
-                    `px solid ${iconStyle.borderColor}`,
+                  ...generalIcons,
+                  width: "34px",
+                  height: "34px",
                 }}
                 src={
                   appBarLeftDetails?.find(
@@ -231,45 +269,42 @@ const Navbar = () => {
               />
             </div>
           )}
-          {appBarSearch.position === "left" && (
-            <div onClick={() => router.push("/search")}>
-              <Image
-                style={{
-                  ...iconStyle,
-                  border:
-                    iconStyle.border.toString() +
-                    `px solid ${iconStyle.borderColor}`,
-                }}
-                src={
-                  appBarRightDetails?.find(
-                    (item) => item.key == "mobile_home_app_bar_show_icon_search"
-                  )?.icon
-                }
-              />
-            </div>
+          {appBarSearch?.position === "left" && appBarSearch?.status && (
+            <Input
+              input={appBarSearch?.input}
+              style={
+                appBarSearch?.input
+                  ? {
+                      textBg: "transparent !important",
+                      color: appBarSearch?.textColor,
+                      border: `${appBarSearch?.borderWidth?.toString()}px solid ${
+                        appBarSearch?.borderColor
+                      }`,
+                      // background: "transparent",
+                      display: appBarSearch?.status ? "flex" : "none",
+                    }
+                  : generalIcons
+              }
+              className={`${
+                appBarSearch?.mobileView?.status ? "max-sm:flex" : "hidden"
+              }`}
+              location="left"
+            />
           )}
           <div className="flex items-center">
-            {appBarLogo.position === "left" && (
+            {appBarLogo?.position === "left" && (
               <div className="flex items-center">
                 <Image
                   // Style of centered Section
-                  style={{
-                    width: appBarLogo?.width,
-                    height: appBarLogo?.height,
-                  }}
+                  style={{ ...appBarLogo?.logo }}
                   // Image link
-                  src={appBarLogo?.logo}
+                  src={appBarLogo?.logo?.url}
                 />
 
-                {appBarLogo?.text && (
+                {appBarLogo?.text?.value !== "empty value" && (
                   <Span
-                    style={{
-                      fontSize: appBarLogo?.size,
-                      fontWeight: appBarLogo?.isBold ? 800 : "400",
-                      color: appBarLogo?.color,
-                      lineClamp: appBarLogo?.numberOfLines,
-                    }}
-                    text={appBarLogo?.text}
+                    style={appBarLogo?.text}
+                    text={appBarLogo?.text?.value}
                   />
                 )}
               </div>
@@ -278,38 +313,57 @@ const Navbar = () => {
         </div>
         {/* Center */}
         <div className="flex items-center">
+          <div className="flex items-center gap-3">
+            {centerMenu?.menuItems?.map((item, i) => (
+              <span
+                key={i}
+                onMouseEnter={() => setIsHovered(item?.name)}
+                onMouseLeave={() => setIsHovered(false)}
+                style={{
+                  ...centerMenu?.style,
+                  fontSize: centerMenu?.style?.size,
+                  color:
+                    isHovered === item?.name && centerMenu?.style?.hoverColor
+                      ? centerMenu?.style?.hoverColor
+                      : centerMenu?.style?.color,
+                }}
+              >
+                {item?.name}
+              </span>
+            ))}
+          </div>
           {appBarLogo?.position === "center" && (
             <div className="flex items-center">
               <Image
                 // Style of centered Section
-                style={{ width: appBarLogo?.width, height: appBarLogo?.height }}
+                style={appBarLogo?.logo}
                 // Image link
-                src={appBarLogo?.logo}
+                src={appBarLogo?.logo?.url}
               />
 
               {appBarLogo?.text && (
-                <Span
-                  style={{
-                    fontSize: appBarLogo?.size,
-                    fontWeight: appBarLogo?.isBold ? 800 : "400",
-                    color: appBarLogo?.color,
-                    lineClamp: appBarLogo?.numberOfLines,
-                  }}
-                  text={appBarLogo?.text}
-                />
+                <Span style={appBarLogo?.text} text={appBarLogo?.text?.value} />
               )}
             </div>
           )}
           {appBarSearch?.position === "center" && (
             <Input
-              style={{
-                color: appBarSearch?.textColor,
-                border: `${appBarSearch?.borderWidth?.toString()}px solid ${
-                  appBarSearch?.borderColor
-                }`,
-                display: appBarSearch?.status ? "flex" : "none",
-              }}
-              placeholder={appBarSearch?.placeholder}
+              input={appBarSearch?.input}
+              style={
+                appBarSearch?.input
+                  ? {
+                      color: appBarSearch?.textColor,
+                      display: appBarSearch?.status ? "flex" : "none",
+                      border: `${appBarSearch?.borderWidth?.toString()}px solid ${
+                        appBarSearch?.borderColor
+                      }`,
+                    }
+                  : generalIcons
+              }
+              className={`${
+                appBarSearch?.mobileView?.status ? "max-sm:flex" : "hidden"
+              }`}
+              placeholder={"Hassaan"}
               location="center"
             />
           )}
@@ -320,33 +374,35 @@ const Navbar = () => {
             <div className="flex items-center">
               <Image
                 // Style of centered Section
-                style={{ width: appBarLogo?.width, height: appBarLogo?.height }}
+                style={appBarLogo?.logo}
                 // Image link
-                src={appBarLogo?.logo}
+                src={appBarLogo?.logo?.url}
               />
 
               {appBarLogo?.text && (
-                <Span
-                  style={{
-                    fontSize: appBarLogo?.size,
-                    fontWeight: appBarLogo?.isBold ? 800 : "400",
-                    color: appBarLogo?.color,
-                    lineClamp: appBarLogo?.numberOfLines,
-                  }}
-                  text={appBarLogo?.text}
-                />
+                <Span style={appBarLogo?.text} text={appBarLogo?.text?.value} />
               )}
             </div>
           )}
           {appBarSearch?.position === "right" && (
             <Input
-              style={{
-                color: appBarSearch?.textColor,
-                border: `${appBarSearch?.borderWidth?.toString()}px solid ${
-                  appBarSearch?.borderColor
-                }`,
-                display: appBarSearch?.status ? "flex" : "none",
-              }}
+              className={`${
+                appBarSearch?.mobileView?.status ? "max-sm:flex" : "hidden"
+              }`}
+              input={appBarSearch?.input}
+              style={
+                appBarSearch?.input
+                  ? {
+                      textBg: "transparent !important",
+                      color: appBarSearch?.textColor,
+                      border: `${appBarSearch?.borderWidth?.toString()}px solid ${
+                        appBarSearch?.borderColor
+                      }`,
+                      // background: "transparent",
+                      display: appBarSearch?.status ? "flex" : "none",
+                    }
+                  : generalIcons
+              }
               location="right"
             />
           )}
@@ -355,10 +411,9 @@ const Navbar = () => {
           )?.show && (
             <Image
               style={{
-                ...iconStyle,
-                border:
-                  iconStyle?.border?.toString() +
-                  `px solid ${iconStyle?.borderColor}`,
+                ...generalIcons,
+                width: "34px",
+                height: "34px",
               }}
               src={
                 appBarRightDetails?.find(
@@ -373,10 +428,9 @@ const Navbar = () => {
           )?.show && (
             <Image
               style={{
-                ...iconStyle,
-                border:
-                  iconStyle?.border?.toString() +
-                  `px solid ${iconStyle?.borderColor}`,
+                ...generalIcons,
+                width: "34px",
+                height: "34px",
               }}
               src={
                 appBarRightDetails?.find(

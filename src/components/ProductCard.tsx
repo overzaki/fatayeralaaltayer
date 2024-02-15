@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import BasicModal from "./Modal";
@@ -41,7 +41,41 @@ const ProductCard = ({
     let object = { id: id, price: price, desc: desc, name: name, quantity: 1 };
     dispatch(addToCart(object as any));
   };
+  const [productStylingDetails, setProductStylingDetails] = useState({
+    addWishList: true,
+    showDescription: true,
+    showCategory: "true,false",
+    showAddToCart: false,
+    showOffPrice: "true,false",
+    showTotalPrice: false,
+    addWishListIconPosition: 1,
+  });
+  const [generalProductStyling, setGeneralProductStyling] = useState({
+    gridView: "1,2,3", //Explain
+    cardStyle: "1,2,3", //Explain
+    imageShape: "square",
+    search: {
+      //Explain
 
+      status: "true,false",
+      position: "left, right, center",
+    },
+    filter: {
+      //Explain
+      sortBy: "true,false",
+      priceFilter: "true,false",
+      sortByCategories: "true,false",
+    },
+    productCard: {
+      addWishList: "true,false",
+      showDescription: "true,false",
+      showCategory: "true,false",
+      showAddToCart: "true,false",
+      showOffPrice: "true,false", //There's no off price in the theme
+      showTotalPrice: "true,false",
+      addWishListIconPosition: "1,2,3,4",
+    },
+  });
   return (
     <div
       // {...provided.draggableProps}
@@ -58,7 +92,9 @@ const ProductCard = ({
         } flex items-center justify-center h-[200px] sm:w-[280px]  sm:h-[280px] border lg:w-[220px] lg:h-[220px]  border-gray-300 
          
          xl:w-[280px] ${
-           imageStyle === 1 ? "rounded-lg" : "rounded-full"
+           generalProductStyling?.imageShape === "square"
+             ? "rounded-lg"
+             : "rounded-full"
          }  overflow-hidden`}
         item
         xs={6}
@@ -75,15 +111,17 @@ const ProductCard = ({
           height={270}
         />
 
-        <FavoriteBorderOutlinedIcon
-          className={`absolute text-[38px] rounded-xl ${
-            wishlistStyle === 1
-              ? "top-2 right-2"
-              : wishlistStyle === 2
-              ? "bottom-2 right-2"
-              : "bottom-2 right-2"
-          } bg-white p-2`}
-        />
+        {productStylingDetails?.addWishList && (
+          <FavoriteBorderOutlinedIcon
+            className={`absolute text-[38px] rounded-xl ${
+              productStylingDetails?.addWishListIconPosition == 1
+                ? "top-2 right-2"
+                : productStylingDetails?.addWishListIconPosition == 2
+                ? "bottom-2 right-2"
+                : "bottom-2 right-2"
+            } bg-white p-2`}
+          />
+        )}
 
         {titleStyle == 2 && (
           <div
@@ -117,20 +155,26 @@ const ProductCard = ({
       )}
 
       <div className="w-full">
-        <p className="w-full line-clamp-2 font-extralight break-all h-[50px] ">
-          {desc}
-        </p>
+        {productStylingDetails?.showDescription && (
+          <p className="w-full line-clamp-2 font-extralight break-all h-[50px] ">
+            {desc}
+          </p>
+        )}
         <div className="flex gap-2">
-          <p className="w-full font-semibold ">{price} KWD</p>
-          <AddIcon
-            onClick={handleCart}
-            className="bg-primary"
-            sx={{
-              borderRadius: "9999px",
-              color: "white",
-              cursor: "pointer",
-            }}
-          />
+          {productStylingDetails?.showTotalPrice && (
+            <p className="w-full font-semibold ">{price} KWD</p>
+          )}
+          {productStylingDetails?.showAddToCart && (
+            <AddIcon
+              onClick={handleCart}
+              className="bg-primary"
+              sx={{
+                borderRadius: "9999px",
+                color: "white",
+                cursor: "pointer",
+              }}
+            />
+          )}
         </div>
       </div>
 

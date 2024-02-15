@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Footer = () => {
+  const [footerDetails, setFooterDetails] = useState({
+    backgroundColor: "white",
+    color: "black",
+    design: "1,2",
+    logo: "true,false",
+    showMenu: "true,false",
+    menu: [
+      {
+        name: "",
+        link: "",
+      },
+      {
+        name: "",
+        link: "",
+      },
+      {
+        name: "",
+        link: "",
+      },
+    ],
+    menuStyle: {
+      color: "",
+      backgroundColor: "",
+      hoverColor: "",
+    },
+  });
   return (
-    <div className="relative mt-6 bg-blueGray-200 pt-8 pb-6">
+    <div
+      style={{
+        backgroundColor: footerDetails?.backgroundColor,
+        color: footerDetails?.color,
+      }}
+      className="relative mt-6  pt-8 pb-6"
+    >
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap text-left lg:text-left">
           <div className="w-full lg:w-6/12 px-4">
