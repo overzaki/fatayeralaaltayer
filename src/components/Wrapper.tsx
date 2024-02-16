@@ -31,8 +31,8 @@ const Wrapper = ({ children }: { children: React.ReactElement }) => {
 
   const getStyleConfig = () => {
     // const hostName: string = "fadingvolatility202.overzaki.info"; // working...
-    const hostName: string = "robustidiot5576.overzaki.info"; // working...
-    // const hostName: string = window.location.hostname;
+    // const hostName: string = "robustidiot5576.overzaki.info"; // working...
+    const hostName: string = window.location.hostname;
 
     localStorage.setItem("hostName", hostName);
     const designType: any = builderId ? "temporary" : "constant";

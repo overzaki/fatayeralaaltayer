@@ -41,7 +41,7 @@ const SectionNavigator = () => {
     if (!globalState?.categories?.list) {
       dispath(fetchCategoriesList());
     }
-  }, [dispath, globalState]);
+  }, [globalState]);
   useEffect(() => {
     if (globalState?.configration) {
       const itemsStyle =
@@ -64,15 +64,13 @@ const SectionNavigator = () => {
         className="flex mt-4  top-20 pt-2  z-50 p-1 border border-gray-300 bg-white items-center"
       >
         <div
-          className={`whitespace-nowrap ${
-            itemsStyles === 2 ? `grid grid-rows-2 grid-flow-col gap-4` : ""
-          } noscrollbar overflow-x-auto w-full ${
-            categories?.categoriesList?.position === "right"
+          className={`whitespace-nowrap ${itemsStyles === 2 ? `grid grid-rows-2 grid-flow-col gap-4` : ""
+            } noscrollbar overflow-x-auto w-full ${categories?.categoriesList?.position === "right"
               ? "justify-end"
               : categories?.categoriesList?.position === "left"
-              ? "justify-start"
-              : "justify-center"
-          } overflow-y-hidden`}
+                ? "justify-start"
+                : "justify-center"
+            } overflow-y-hidden`}
         >
           {globalState?.categories?.list &&
             globalState?.categories?.list.map((item: any) => (
@@ -85,9 +83,8 @@ const SectionNavigator = () => {
                       ? hoverColor
                       : categories?.categoriesList?.color,
                 }}
-                className={`p-3 navLink inline-block noscrollbar overflow-scroll px-4 duration-300  ${
-                  navigatorStyle === 1 ? "rounded-full" : "rounded-none"
-                } rounded-full`}
+                className={`p-3 navLink inline-block noscrollbar overflow-scroll px-4 duration-300  ${navigatorStyle === 1 ? "rounded-full" : "rounded-none"
+                  } rounded-full`}
               >
                 <Link
                   onMouseEnter={() => setIsHovered(true)}
