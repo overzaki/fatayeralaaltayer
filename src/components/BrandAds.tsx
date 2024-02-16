@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -85,8 +86,8 @@ const BrandAds = () => {
   ]);
   return (
     <div className="flex  gap-4">
-      {adDetails?.map((item: any) => (
-        <div className="relative">
+      {adDetails?.map((item: any,ind:any) => (
+        <div className="relative" key={"card_"+ind}>
           <img style={item?.image?.imageStyles} src={item?.image?.url} />
           <div className="absolute bottom-6 left-6">
             <h1

@@ -5,7 +5,7 @@ const PrCard = () => {
     <div className="group border-gray-100/30 flex w-full bg-white max-w-xs flex-col self-center overflow-hidden rounded-lg border container shadow-md">
       <div
         className="relative  mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
-        href="#"
+        // href="#"
       >
         <img
           className="peer absolute top-0 right-0 h-full w-full object-cover"

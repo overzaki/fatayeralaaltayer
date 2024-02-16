@@ -45,11 +45,11 @@ const Section = ({
   const [foodProducts, setFoodProducts] = useState(products);
   const [draggedItem, setDraggedItem] = useState(null);
 
-  const handleDragStart = (e, id) => {
+  const handleDragStart = (e:any, id:any) => {
     setDraggedItem(id);
   };
 
-  const handleDragOver = (e, id) => {
+  const handleDragOver = (e:any, id:any) => {
     e.preventDefault();
     if (draggedItem === id) return;
 

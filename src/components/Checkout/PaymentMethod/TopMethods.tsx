@@ -16,7 +16,7 @@ const TopMethods = () => {
         </div>
         <h1 className="font-semibold  ">KWD 1300</h1>
       </div>
-      <StripeCheckout
+      {/* <StripeCheckout
         token={onToken}
         stripeKey={
           "pk_test_51OiJqOSBRf3R5sNkOpBgUnMBF3v7BAwjonVvuqqQhCkt8vHD3ULWmF56Shtl7hE7wLFHVetlhRGGVxBVrG8CQHz800bZ7mq20P"
@@ -28,7 +28,7 @@ const TopMethods = () => {
             <h3 className="text-sm">Enter card details</h3>
           </div>
         </div>
-      </StripeCheckout>
+      </StripeCheckout> */}
       <div className="w-full text-sm font-extralight  p-5 flex items-center justify-between ">
         <h3>For faster and more secure checkout. Save your card details.</h3>
         <h1 className="font-semibold">

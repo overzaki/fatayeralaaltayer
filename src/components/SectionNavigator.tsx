@@ -21,7 +21,7 @@ const SectionNavigator = () => {
 
   const [navigatorStyle, setNavigatorStyle] = useState(2);
   const [itemsStyles, setItemsStyles] = useState(2);
-  const [categories, setCategories] = useState({
+  const [categories, setCategories] = useState<any>({
     categoriesBar: {
       status: true,
       backgroundColor: "white",
@@ -76,19 +76,10 @@ const SectionNavigator = () => {
         >
           {globalState?.categories?.list &&
             globalState?.categories?.list.map((item: any) => (
-              <Link
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(item?.name?.localized)}
-                href={
-                  "#" +
-                  item?.name?.localized
-                    ?.toLocaleLowerCase()
-                    .split(" ")
-                    .join("-")
-                }
+              <div
                 key={item._id}
                 style={{
-                  ...categories?.categoriesList,
+                  ...categories?.categoriesList || "",
                   color:
                     isHovered === item?.name?.localized && hoverColor
                       ? hoverColor
@@ -98,14 +89,26 @@ const SectionNavigator = () => {
                   navigatorStyle === 1 ? "rounded-full" : "rounded-none"
                 } rounded-full`}
               >
-                <div className="flex shadow-lg rounded-full p-1 flex-col items-center">
-                  <img
-                    className="w-16 h-16 object-cover rounded-full"
-                    src={item?.image}
-                  />
-                  <span className="text-center">{item?.name?.localized}</span>
-                </div>
-              </Link>
+                <Link
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(item?.name?.localized)}
+                  href={
+                    "#" +
+                    item?.name?.localized
+                      ?.toLocaleLowerCase()
+                      .split(" ")
+                      .join("-")
+                  }
+                >
+                  <div className="flex shadow-lg rounded-full p-1 flex-col items-center">
+                    <img
+                      className="w-16 h-16 object-cover rounded-full"
+                      src={item?.image}
+                    />
+                    <span className="text-center">{item?.name?.localized}</span>
+                  </div>
+                </Link>
+              </div>
             ))}
         </div>
         <div className="border-l px-3 border-gray-300">
