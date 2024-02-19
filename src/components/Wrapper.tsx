@@ -20,7 +20,7 @@ const Wrapper = ({ children }: { children: React.ReactElement }) => {
     if (builderId) {
       socket.on(`${builderId}:cmd`, (data: { result: any; }) => {
         updateStyles(data.result);
-        // console.log(data.result);
+        console.log("result", data.result);
       });
       getStyleConfig();
     }
