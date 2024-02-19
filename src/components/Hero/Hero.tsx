@@ -48,9 +48,8 @@ const Hero = () => {
 
   return (
     <div
-      className={`bg-[url(${
-        themeHeaderImage || "/heroImage.jpg"
-      })] rounded-lg z-10 relative overflow-hidden h-[455px] bg-no-repeat bg-center bg-cover `}
+      className={`bg-[url(${themeHeaderImage || "/heroImage.jpg"
+        })] rounded-lg z-10 relative overflow-hidden h-[455px] bg-no-repeat bg-center bg-cover `}
       style={{
         backgroundImage: `url('${themeHeaderImage || "/heroImage.jpg"}')`,
         backgroundPositionY,

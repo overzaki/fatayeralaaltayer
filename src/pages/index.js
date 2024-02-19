@@ -97,6 +97,8 @@ const Home = () => {
     },
   });
 
+
+
   return (
     <div className="">
       {/* <Navbar2 /> */}

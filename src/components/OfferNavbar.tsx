@@ -1,10 +1,11 @@
 /* eslint-disable */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 const OfferNavbar = () => {
   const router = useRouter();
   const [adAppbar, setAdAppbar] = useState({
@@ -36,6 +37,20 @@ const OfferNavbar = () => {
     ],
   });
   const { Slider, ...restOfStyles } = adAppbar;
+
+  const configrationState = useSelector((state: any) => state?.configration);
+
+  useEffect(() => {
+    if (configrationState?.defaultData) {
+      // ----------- New AppBar Response Values -----------------
+      const sections = configrationState?.defaultData?.home?.sections;
+      // container
+      if (sections?.appBar?.adAppBar && typeof sections?.appBar?.adAppBar === 'object') {
+        setAdAppbar({ ...adAppbar, ...(sections?.appBar?.adAppBar) })
+      }
+    }
+  }, [configrationState?.defaultData]);
+
   return (
     <Swiper
       modules={[Autoplay]}
@@ -54,7 +69,7 @@ const OfferNavbar = () => {
           key={i}
         >
           <div
-            onClick={item?.href ? () => router.push(item?.href) : () => {}}
+            onClick={item?.href ? () => router.push(item?.href) : () => { }}
             className="flex cursor-pointer items-center w-full justify-center"
           >
             <img className="w-8 h-8" src={item?.imageURL} />
