@@ -18,7 +18,7 @@ const Wrapper = ({ children }: { children: React.ReactElement }) => {
 
   useEffect(() => {
     if (builderId) {
-      socket.on(`${builderId}:cmd`, (data) => {
+      socket.on(`${builderId}:cmd`, (data: { result: any; }) => {
         updateStyles(data.result);
         // console.log(data.result);
       });

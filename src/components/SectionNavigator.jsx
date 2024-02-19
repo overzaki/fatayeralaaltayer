@@ -16,13 +16,13 @@ const SectionNavigator = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const dispath = useDispatch<AppDispatch>();
-  const globalState = useSelector((state: any) => state);
+  const dispath = useDispatch();
+  const globalState = useSelector((state) => state);
   const [isHovered, setIsHovered] = useState(false);
 
   const [navigatorStyle, setNavigatorStyle] = useState(2);
   const [itemsStyles, setItemsStyles] = useState(2);
-  const [categories, setCategories] = useState<any>({
+  const [categories, setCategories] = useState({
     categoriesBar: {
       status: true,
       backgroundColor: "white",
@@ -74,7 +74,7 @@ const SectionNavigator = () => {
             } overflow-y-hidden`}
         >
           {globalState?.categories?.list &&
-            globalState?.categories?.list.map((item: any) => (
+            globalState?.categories?.list.map((item) => (
               <Link
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(item?.name?.localized)}
@@ -87,7 +87,7 @@ const SectionNavigator = () => {
                 }
                 key={item._id}
                 style={{
-                  ...(categories?.categoriesList ?? {}),
+                  ...categories?.categoriesList,
                   color:
                     isHovered === item?.name?.localized && hoverColor
                       ? hoverColor

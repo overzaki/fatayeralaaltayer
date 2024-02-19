@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { categoriesList, productsList } from "../../src/constants/dummyData";
 import { IRequest, defaultConfig, endpoints, getRequest } from "../store/axios";
 
-export const fetchCategoriesList = createAsyncThunk(
+export const fetchCategoriesList: any = createAsyncThunk(
   "category/fetchList",
   async () => {
     try {

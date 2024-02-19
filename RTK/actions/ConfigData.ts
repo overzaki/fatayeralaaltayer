@@ -6,7 +6,7 @@ import {
   getRequestWithParams,
 } from "../store/axios";
 // Create an async thunk to fetch data from an API
-const fetchData = createAsyncThunk(
+const fetchData: any = createAsyncThunk(
   "configFile/fetchConfigData",
   async ({ hostName, designType }: any) => {
     try {
