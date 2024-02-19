@@ -31,7 +31,7 @@ const Home = () => {
         }
       });
     });
-  }, []);
+  }, [navLinkStyle]);
 
   return (
     <Provider store={store}>

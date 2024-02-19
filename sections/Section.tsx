@@ -36,7 +36,7 @@ const Section = ({
     return () => {
       window.removeEventListener("scroll", () => {});
     };
-  }, []);
+  }, [navLinkStyle]);
 
   const [productsLayout, setProductsLayout] = useState(2);
   const [titleStyle, setTitleStyle] = useState(1);
@@ -45,11 +45,11 @@ const Section = ({
   const [foodProducts, setFoodProducts] = useState(products);
   const [draggedItem, setDraggedItem] = useState(null);
 
-  const handleDragStart = (e:any, id:any) => {
+  const handleDragStart = (e: any, id: any) => {
     setDraggedItem(id);
   };
 
-  const handleDragOver = (e:any, id:any) => {
+  const handleDragOver = (e: any, id: any) => {
     e.preventDefault();
     if (draggedItem === id) return;
 

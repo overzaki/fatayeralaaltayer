@@ -22,7 +22,7 @@ export default function BasicModal({
   name: string;
   desc?: string;
   id: number;
-  images: string;
+  images: any;
 }) {
   return (
     <div className="flex">

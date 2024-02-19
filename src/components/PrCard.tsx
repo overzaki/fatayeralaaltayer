@@ -1,12 +1,10 @@
+/* eslint-disable */
 import React from "react";
 
 const PrCard = () => {
   return (
     <div className="group border-gray-100/30 flex w-full bg-white max-w-xs flex-col self-center overflow-hidden rounded-lg border container shadow-md">
-      <div
-        className="relative  mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
-        // href="#"
-      >
+      <div className="relative  mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
         <img
           className="peer absolute top-0 right-0 h-full w-full object-cover"
           src="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60?a=b"

@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
@@ -17,20 +18,17 @@ import { useSelector } from "react-redux";
 const AnyReactComponent = ({ text }: any) => <div>{text}</div>;
 
 const StoreInfoSlide = ({ open, setOpen, paymentMethods }: any) => {
-
-  const [themeLogo, setthemeLogo] = useState<any>(null)
+  const [themeLogo, setthemeLogo] = useState<any>(null);
   const configrationState = useSelector((state: any) => state?.configration);
 
   useEffect(() => {
     if (configrationState?.defaultData) {
       // const logoValue = configrationState?.defaultData?.builderId?.logo;
       let logoValue = configrationState?.defaultData?.logo;
-      logoValue = logoValue !== "empty value" ? logoValue : ""
+      logoValue = logoValue !== "empty value" ? logoValue : "";
       setthemeLogo(logoValue || "");
     }
-  }, [configrationState?.defaultData])
-
-
+  }, [configrationState?.defaultData]);
 
   const [toggle, setToggle] = useState(false);
   const defaultProps = {

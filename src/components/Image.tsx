@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 
 const Image = ({ style, src }: { style: any; src: string }) => {
