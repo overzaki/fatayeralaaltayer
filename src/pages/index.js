@@ -97,7 +97,20 @@ const Home = () => {
     },
   });
 
+  const configrationState = globalState?.configration;
 
+  useEffect(() => {
+    if (configrationState?.defaultData) {
+      // ----------- New AppBar Response Values -----------------
+      const sections = configrationState?.defaultData?.home?.sections;
+      // container
+
+      if (sections?.banner && typeof sections?.banner === 'object') {
+        console.log(sections?.banner);
+        setBannerDetails({ ...bannerDetails, ...(sections?.banner) })
+      }
+    }
+  }, [configrationState?.defaultData]);
 
   return (
     <div className="">
