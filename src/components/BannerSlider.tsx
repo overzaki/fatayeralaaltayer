@@ -10,7 +10,7 @@ const BannerSlider = ({ data }: any) => {
     <Swiper modules={[Autoplay]} autoplay={{ delay: 1700 }} loop>
       {data?.map((item: any, i: any) => (
         <SwiperSlide key={i} className="relative">
-          <img className="w-full object-center" src={item?.src} />
+          <img className="w-full object-center" src={item?.file} />
           {item?.textStatus && (
             <h1
               style={item?.style}

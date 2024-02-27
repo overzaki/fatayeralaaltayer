@@ -45,9 +45,9 @@ const Home = () => {
 
     bannerBackground: {
       status: true,
-      backgroundType: "video",
-      image: {
-        src: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
+      backgroundType: "slider",
+      file: {
+        file: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
         text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,",
         textStatus: true,
         style: {
@@ -61,7 +61,7 @@ const Home = () => {
 
       slider: [
         {
-          src: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
+          file: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
           text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,",
           textStatus: true,
           style: {
@@ -72,7 +72,7 @@ const Home = () => {
           },
         },
         {
-          src: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
+          file: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
           text: "007",
           textStatus: true,
           style: {
@@ -83,7 +83,7 @@ const Home = () => {
           },
         },
         {
-          src: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
+          file: "https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Business-Website-Banner-Design-1180x664.jpg",
           text: "Hassaan 82 007",
           textStatus: true,
           style: {
@@ -106,11 +106,18 @@ const Home = () => {
       // container
 
       if (sections?.banner && typeof sections?.banner === 'object') {
-        console.log(sections?.banner);
+        // console.log(sections?.banner);
         setBannerDetails({ ...bannerDetails, ...(sections?.banner) })
       }
     }
   }, [configrationState?.defaultData]);
+
+
+  useEffect(() => {
+
+    console.log("bannerDetails", bannerDetails);
+  }, [bannerDetails])
+
 
   return (
     <div className="">
@@ -123,9 +130,9 @@ const Home = () => {
       {bannerDetails?.bannerBackground?.backgroundType === "video" ? (
         <VideoBanner />
       ) : bannerDetails?.bannerBackground?.backgroundType === "image" ? (
-        <ImageTextBanner data={bannerDetails?.bannerBackground?.image} />
+        <ImageTextBanner data={bannerDetails?.bannerBackground?.file} />
       ) : (
-        <BannerSlider data={bannerDetails?.bannerBackground?.slider} />
+        <BannerSlider data={bannerDetails?.slider} />
       )}
 
       <Wrapper>
